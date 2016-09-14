@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.xiaoyu.ssm.dao.UserDao">
+	<!-- _User是配置的别名  -->
+	<select id="getUserById" parameterType="int" resultType="_User">
+		select * from user where id = #{id}
+	</select>
+	
+	<select id="getUserByEmail" parameterType="string" resultType="_User">
+		select * from user where email = #{email}
+	</select>
+
+	<!-- 这儿是为了解决类中名称和字段名称不一致的冲突问题
+		有两种方式：
+			第一种：在select uid id from user这种形式，可以将字段uid对应上属性id
+			第二种：采用下面这种方式，可以将字段和属性进行关联
+	 -->
+	<resultMap type="_User" id="resultUser">
+		<id column="id" property="id" />
+		<result column="username" property="username" />
+		<result column="email" property="email" />
+		<result column="password" property="password" />
+		<result column="birth" property="birth" />
+	</resultMap>
+	<!-- 返回list 的select 语句，注意 resultMap 的值是指向前面定义好的 -->
+	<select id="getUserByName" parameterType="string" resultMap="resultUser">
+		select * from user where username like #{username}
+	</select>
+
+	<!--执行增加操作的SQL语句。id和parameterType 分别与IUserOperation接口中的addUser方法的名字和 参数类型一致。以#{name}的形式引用Student参数 
+		的name属性，MyBatis将使用反射读取Student参数 的此属性。#{name}中name大小写敏感。引用其他 的gender等属性与此一致。useGeneratedKeys设置
+		为"true"表明要MyBatis获取由数据库自动生成的主 键；keyProperty="id"指定把获取到的主键值注入 到Student的id属性 -->
+	<insert id="saveUser" parameterType="_User">
+		insert into user(username,password,email,birth) values (#{username},#{password},#{email},#{birth})
+	</insert>
+
+	<!-- 获取数据库自增长ID -->
+	<insert id="saveUserReturnID" parameterType="_User" useGeneratedKeys="true" keyProperty="id">
+		insert into user(username,password,email,birth) values (#{username},#{password},#{email},#{birth})
+	</insert>
+
+	<!-- 拼接sql条件，适合一些模糊查询 -->
+	<select id="getList" resultMap="resultUser">
+		<![CDATA[ SELECT * FROM userinfo WHERE 1=1 ]]>
+		<if test="username != null"><![CDATA[ AND username = #{username} ]]></if>
+		<if test="email != null"><![CDATA[ AND email = #{email} ]]></if>
+		<![CDATA[ ORDER BY id ASC ]]>
+	</select>
+</mapper>
