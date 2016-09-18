@@ -1,6 +1,7 @@
 package cn.xiaoyu.ssm.test;
 
 import cn.xiaoyu.ssm.crawler.ZreadingCrawler;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
@@ -18,6 +19,7 @@ public class ZreadingTest {
     private ZreadingCrawler crawler;
 
     @Test
+    @Ignore
     public void testSave(){
         crawler.crawl();
     }
