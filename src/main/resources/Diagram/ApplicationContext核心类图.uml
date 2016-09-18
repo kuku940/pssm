@@ -1,0 +1,294 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>org.springframework.context.ApplicationContext</OriginalElement>
+  <nodes>
+    <node x="539.0" y="250.0">org.springframework.beans.factory.HierarchicalBeanFactory</node>
+    <node x="2223.6421383647803" y="250.0">org.springframework.beans.factory.support.BeanDefinitionResource</node>
+    <node x="670.25" y="590.0">org.springframework.context.support.FileSystemXmlApplicationContext</node>
+    <node x="1316.0" y="340.0">org.springframework.core.io.UrlResource</node>
+    <node x="1766.2671383647803" y="340.0">org.springframework.core.io.ClassPathResource</node>
+    <node x="145.0" y="250.0">org.springframework.beans.factory.config.AutowireCapableBeanFactory</node>
+    <node x="2344.1421383647803" y="430.0">org.springframework.core.io.FileSystemResourceLoader.FileSystemContextResource</node>
+    <node x="1242.0171383647803" y="510.0">org.springframework.core.io.FileSystemResourceLoader</node>
+    <node x="1680.0171383647803" y="250.0">org.springframework.core.io.AbstractFileResolvingResource</node>
+    <node x="1971.1421383647803" y="340.0">org.springframework.core.io.ContextResource</node>
+    <node x="1293.2032232704407" y="430.0">org.springframework.core.io.DefaultResourceLoader</node>
+    <node x="2046.6421383647803" y="250.0">org.springframework.core.io.InputStreamResource</node>
+    <node x="721.0" y="430.0">org.springframework.context.ConfigurableApplicationContext</node>
+    <node x="367.0" y="250.0">org.springframework.core.env.EnvironmentCapable</node>
+    <node x="730.0" y="250.0">org.springframework.context.ApplicationEventPublisher</node>
+    <node x="1630.047720125786" y="590.0">org.springframework.context.support.ClassPathXmlApplicationContext</node>
+    <node x="2174.5023584905666" y="80.0">org.springframework.core.io.Resource</node>
+    <node x="0.0" y="250.0">org.springframework.context.MessageSource</node>
+    <node x="1164.5782232704407" y="170.0">org.springframework.core.io.ResourceLoader</node>
+    <node x="1864.8921383647803" y="430.0">org.springframework.core.io.DefaultResourceLoader.ClassPathContextResource</node>
+    <node x="532.0" y="430.0">org.springframework.web.context.WebApplicationContext</node>
+    <node x="2413.6421383647803" y="250.0">org.springframework.core.io.FileSystemResource</node>
+    <node x="652.0" y="340.0">org.springframework.context.ApplicationContext</node>
+    <node x="2126.9852201257863" y="170.0">org.springframework.core.io.AbstractResource</node>
+    <node x="734.5" y="510.0">org.springframework.context.support.AbstractApplicationContext</node>
+    <node x="2146.0023584905666" y="0.0">org.springframework.core.io.InputStreamSource</node>
+    <node x="537.9023584905664" y="170.0">org.springframework.beans.factory.BeanFactory</node>
+    <node x="1098.0" y="250.0">org.springframework.core.io.support.ResourcePatternResolver</node>
+    <node x="931.0" y="250.0">org.springframework.beans.factory.ListableBeanFactory</node>
+    <node x="1449.0171383647803" y="510.0">org.springframework.web.context.support.ServletContextResourceLoader</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="org.springframework.context.support.ClassPathXmlApplicationContext" target="org.springframework.core.io.ClassPathResource">
+      <point x="27.25" y="-15.0" />
+      <point x="1766.297720125786" y="560.0" />
+      <point x="1854.3921383647803" y="560.0" />
+      <point x="17.625" y="15.0" />
+    </edge>
+    <edge source="org.springframework.beans.factory.HierarchicalBeanFactory" target="org.springframework.beans.factory.BeanFactory">
+      <point x="0.0" y="-15.0" />
+      <point x="624.5" y="230.0" />
+      <point x="589.4023584905664" y="230.0" />
+      <point x="0.0" y="15.0" />
+    </edge>
+    <edge source="org.springframework.context.support.ClassPathXmlApplicationContext" target="org.springframework.core.io.Resource">
+      <point x="81.75" y="-15.0" />
+      <point x="1820.797720125786" y="570.0" />
+      <point x="2570.1421383647803" y="570.0" />
+      <point x="2570.1421383647803" y="140.0" />
+      <point x="2251.9023584905663" y="140.0" />
+      <point x="34.40000000000009" y="15.0" />
+    </edge>
+    <edge source="org.springframework.core.io.ClassPathResource" target="org.springframework.core.io.ClassPathResource">
+      <point x="-52.875" y="15.0" />
+      <point x="1783.8921383647803" y="390.0" />
+      <point x="1746.2671383647803" y="390.0" />
+      <point x="1746.2671383647803" y="355.0" />
+      <point x="-70.5" y="-0.0" />
+    </edge>
+    <edge source="org.springframework.core.io.FileSystemResourceLoader.FileSystemContextResource" target="org.springframework.core.io.FileSystemResource">
+      <point x="47.5" y="-15.0" />
+      <point x="0.0" y="15.0" />
+    </edge>
+    <edge source="org.springframework.core.io.AbstractResource" target="org.springframework.core.io.Resource">
+      <point x="0.0" y="-15.0" />
+      <point x="2193.9852201257863" y="150.0" />
+      <point x="2217.5023584905666" y="150.0" />
+      <point x="0.0" y="15.0" />
+    </edge>
+    <edge source="org.springframework.beans.factory.ListableBeanFactory" target="org.springframework.beans.factory.BeanFactory">
+      <point x="0.0" y="-15.0" />
+      <point x="1004.5" y="220.0" />
+      <point x="623.7356918238996" y="220.0" />
+      <point x="34.33333333333326" y="15.0" />
+    </edge>
+    <edge source="org.springframework.core.io.UrlResource" target="org.springframework.core.io.AbstractFileResolvingResource">
+      <point x="0.0" y="-15.0" />
+      <point x="1367.5" y="320.0" />
+      <point x="1732.2671383647803" y="320.0" />
+      <point x="-52.25" y="15.0" />
+    </edge>
+    <edge source="org.springframework.core.io.FileSystemResource" target="org.springframework.core.io.AbstractResource">
+      <point x="-36.5" y="-15.0" />
+      <point x="2450.1421383647803" y="220.0" />
+      <point x="2244.2352201257863" y="220.0" />
+      <point x="50.25" y="15.0" />
+    </edge>
+    <edge source="org.springframework.core.io.DefaultResourceLoader" target="org.springframework.core.io.ResourceLoader">
+      <point x="-56.0" y="-15.0" />
+      <point x="1321.2032232704407" y="410.0" />
+      <point x="1285.5" y="410.0" />
+      <point x="1285.5" y="230.0" />
+      <point x="1259.8282232704407" y="230.0" />
+      <point x="31.75" y="15.0" />
+    </edge>
+    <edge source="org.springframework.core.io.FileSystemResourceLoader.FileSystemContextResource" target="org.springframework.core.io.ContextResource">
+      <point x="-47.5" y="-15.0" />
+      <point x="2391.6421383647803" y="410.0" />
+      <point x="2068.6421383647803" y="410.0" />
+      <point x="32.5" y="15.0" />
+    </edge>
+    <edge source="org.springframework.context.support.AbstractApplicationContext" target="org.springframework.context.MessageSource">
+      <point x="-75.59999999999991" y="-15.0" />
+      <point x="753.4000000000001" y="490.0" />
+      <point x="31.25" y="490.0" />
+      <point x="-31.25" y="15.0" />
+    </edge>
+    <edge source="org.springframework.core.io.DefaultResourceLoader" target="org.springframework.core.io.ClassPathResource">
+      <point x="56.0" y="-15.0" />
+      <point x="1433.2032232704407" y="410.0" />
+      <point x="1819.1421383647803" y="410.0" />
+      <point x="-17.625" y="15.0" />
+    </edge>
+    <edge source="org.springframework.context.support.AbstractApplicationContext" target="org.springframework.context.ApplicationContext">
+      <point x="-37.799999999999955" y="-15.0" />
+      <point x="791.2" y="480.0" />
+      <point x="710.5" y="480.0" />
+      <point x="710.5" y="410.0" />
+      <point x="722.5" y="410.0" />
+      <point x="0.0" y="15.0" />
+    </edge>
+    <edge source="org.springframework.context.ApplicationContext" target="org.springframework.context.ApplicationEventPublisher">
+      <point x="11.75" y="-15.0" />
+      <point x="734.25" y="300.0" />
+      <point x="820.5" y="300.0" />
+      <point x="0.0" y="15.0" />
+    </edge>
+    <edge source="org.springframework.context.ApplicationContext" target="org.springframework.context.MessageSource">
+      <point x="-58.75" y="-15.0" />
+      <point x="663.75" y="320.0" />
+      <point x="93.75" y="320.0" />
+      <point x="31.25" y="15.0" />
+    </edge>
+    <edge source="org.springframework.core.io.FileSystemResourceLoader" target="org.springframework.core.io.DefaultResourceLoader">
+      <point x="0.0" y="-15.0" />
+      <point x="1335.5171383647803" y="490.0" />
+      <point x="1377.2032232704407" y="490.0" />
+      <point x="0.0" y="15.0" />
+    </edge>
+    <edge source="org.springframework.core.io.ClassPathResource" target="org.springframework.core.io.AbstractFileResolvingResource">
+      <point x="0.0" y="-15.0" />
+      <point x="52.25" y="15.0" />
+    </edge>
+    <edge source="org.springframework.web.context.WebApplicationContext" target="org.springframework.context.ApplicationContext">
+      <point x="0.0" y="-15.0" />
+      <point x="616.0" y="410.0" />
+      <point x="675.5" y="410.0" />
+      <point x="-47.0" y="15.0" />
+    </edge>
+    <edge source="org.springframework.context.support.AbstractApplicationContext" target="org.springframework.context.ConfigurableApplicationContext">
+      <point x="0.0" y="-15.0" />
+      <point x="0.0" y="15.0" />
+    </edge>
+    <edge source="org.springframework.core.io.DefaultResourceLoader.ClassPathContextResource" target="org.springframework.core.io.ClassPathResource">
+      <point x="-46.25" y="-15.0" />
+      <point x="1911.1421383647803" y="410.0" />
+      <point x="1889.6421383647803" y="410.0" />
+      <point x="52.875" y="15.0" />
+    </edge>
+    <edge source="org.springframework.context.ApplicationContext" target="org.springframework.core.env.EnvironmentCapable">
+      <point x="-35.25" y="-15.0" />
+      <point x="687.25" y="310.0" />
+      <point x="443.0" y="310.0" />
+      <point x="0.0" y="15.0" />
+    </edge>
+    <edge source="org.springframework.core.io.Resource" target="org.springframework.core.io.InputStreamSource">
+      <point x="0.0" y="-15.0" />
+      <point x="0.0" y="15.0" />
+    </edge>
+    <edge source="org.springframework.web.context.support.ServletContextResourceLoader" target="org.springframework.core.io.DefaultResourceLoader">
+      <point x="0.0" y="-15.0" />
+      <point x="1554.0171383647803" y="490.0" />
+      <point x="1433.2032232704407" y="490.0" />
+      <point x="56.0" y="15.0" />
+    </edge>
+    <edge source="org.springframework.core.io.support.ResourcePatternResolver" target="org.springframework.core.io.ResourceLoader">
+      <point x="0.0" y="-15.0" />
+      <point x="1186.5" y="230.0" />
+      <point x="1196.3282232704407" y="230.0" />
+      <point x="-31.75" y="15.0" />
+    </edge>
+    <edge source="org.springframework.beans.factory.support.BeanDefinitionResource" target="org.springframework.core.io.AbstractResource">
+      <point x="0.0" y="-15.0" />
+      <point x="2308.6421383647803" y="230.0" />
+      <point x="2210.7352201257863" y="230.0" />
+      <point x="16.75" y="15.0" />
+    </edge>
+    <edge source="org.springframework.context.support.FileSystemXmlApplicationContext" target="org.springframework.context.support.AbstractApplicationContext">
+      <point x="0.0" y="-15.0" />
+      <point x="-47.25" y="15.0" />
+    </edge>
+    <edge source="org.springframework.context.support.AbstractApplicationContext" target="org.springframework.core.io.DefaultResourceLoader">
+      <point x="75.59999999999991" y="-15.0" />
+      <point x="904.5999999999999" y="490.0" />
+      <point x="1321.2032232704407" y="490.0" />
+      <point x="-56.0" y="15.0" />
+    </edge>
+    <edge source="org.springframework.beans.factory.config.AutowireCapableBeanFactory" target="org.springframework.beans.factory.BeanFactory">
+      <point x="0.0" y="-15.0" />
+      <point x="246.0" y="230.0" />
+      <point x="555.0690251572331" y="230.0" />
+      <point x="-34.33333333333326" y="15.0" />
+    </edge>
+    <edge source="org.springframework.context.support.AbstractApplicationContext" target="org.springframework.core.io.support.ResourcePatternResolver">
+      <point x="37.799999999999955" y="-15.0" />
+      <point x="866.8" y="480.0" />
+      <point x="1230.75" y="480.0" />
+      <point x="44.25" y="15.0" />
+    </edge>
+    <edge source="org.springframework.core.io.InputStreamResource" target="org.springframework.core.io.AbstractResource">
+      <point x="0.0" y="-15.0" />
+      <point x="2125.1421383647803" y="230.0" />
+      <point x="2177.2352201257863" y="230.0" />
+      <point x="-16.75" y="15.0" />
+    </edge>
+    <edge source="org.springframework.core.io.ContextResource" target="org.springframework.core.io.Resource">
+      <point x="0.0" y="-15.0" />
+      <point x="2036.1421383647803" y="140.0" />
+      <point x="2200.302358490567" y="140.0" />
+      <point x="-17.199999999999818" y="15.0" />
+    </edge>
+    <edge source="org.springframework.context.ConfigurableApplicationContext" target="org.springframework.context.ApplicationContext">
+      <point x="0.0" y="-15.0" />
+      <point x="829.0" y="410.0" />
+      <point x="769.5" y="410.0" />
+      <point x="47.0" y="15.0" />
+    </edge>
+    <edge source="org.springframework.context.support.ClassPathXmlApplicationContext" target="org.springframework.context.support.AbstractApplicationContext">
+      <point x="-81.75" y="-15.0" />
+      <point x="1657.297720125786" y="570.0" />
+      <point x="876.25" y="570.0" />
+      <point x="47.25" y="15.0" />
+    </edge>
+    <edge source="org.springframework.context.ApplicationContext" target="org.springframework.beans.factory.HierarchicalBeanFactory">
+      <point x="-11.75" y="-15.0" />
+      <point x="710.75" y="300.0" />
+      <point x="624.5" y="300.0" />
+      <point x="0.0" y="15.0" />
+    </edge>
+    <edge source="org.springframework.core.io.AbstractFileResolvingResource" target="org.springframework.core.io.AbstractResource">
+      <point x="0.0" y="-15.0" />
+      <point x="1784.5171383647803" y="220.0" />
+      <point x="2143.7352201257863" y="220.0" />
+      <point x="-50.25" y="15.0" />
+    </edge>
+    <edge source="org.springframework.core.io.FileSystemResource" target="org.springframework.core.io.Resource">
+      <point x="36.5" y="-15.0" />
+      <point x="2523.1421383647803" y="150.0" />
+      <point x="2234.7023584905664" y="150.0" />
+      <point x="17.199999999999818" y="15.0" />
+    </edge>
+    <edge source="org.springframework.context.ApplicationContext" target="org.springframework.beans.factory.ListableBeanFactory">
+      <point x="35.25" y="-15.0" />
+      <point x="757.75" y="310.0" />
+      <point x="1004.5" y="310.0" />
+      <point x="0.0" y="15.0" />
+    </edge>
+    <edge source="org.springframework.core.io.DefaultResourceLoader" target="org.springframework.core.io.UrlResource">
+      <point x="0.0" y="-15.0" />
+      <point x="1377.2032232704407" y="410.0" />
+      <point x="1393.25" y="410.0" />
+      <point x="25.75" y="15.0" />
+    </edge>
+    <edge source="org.springframework.core.io.DefaultResourceLoader.ClassPathContextResource" target="org.springframework.core.io.ContextResource">
+      <point x="46.25" y="-15.0" />
+      <point x="-32.5" y="15.0" />
+    </edge>
+    <edge source="org.springframework.core.io.UrlResource" target="org.springframework.core.io.UrlResource">
+      <point x="-25.75" y="15.0" />
+      <point x="1341.75" y="390.0" />
+      <point x="1296.0" y="390.0" />
+      <point x="1296.0" y="355.0" />
+      <point x="-51.5" y="-0.0" />
+    </edge>
+    <edge source="org.springframework.context.ApplicationContext" target="org.springframework.core.io.support.ResourcePatternResolver">
+      <point x="58.75" y="-15.0" />
+      <point x="781.25" y="320.0" />
+      <point x="1142.25" y="320.0" />
+      <point x="-44.25" y="15.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="0.9700534759358289" x="804.0" y="457.5" />
+  <SelectedNodes />
+  <Categories />
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
