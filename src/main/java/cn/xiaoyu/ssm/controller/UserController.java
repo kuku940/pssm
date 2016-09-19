@@ -8,6 +8,7 @@ import cn.xiaoyu.ssm.util.MD5Util;
 import cn.xiaoyu.ssm.util.MailUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -51,6 +52,7 @@ import java.util.List;
 @Controller
 @SessionAttributes("loginUser")
 @RequestMapping("/user")
+@Scope("prototype")
 public class UserController {
 	protected final Logger logger = LoggerFactory.getLogger(getClass());
 	
