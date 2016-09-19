@@ -23,6 +23,31 @@ import java.util.List;
  * @email roingeek@qq.com
  */
 
+/**
+ * 简单介绍spring的各级注解
+ * @Autowired 就是autowire=byType就是根据类型的自动注入依赖（基于注解的依赖注入），
+ * 	可以被使用再属性域，方法，构造函数上。
+ *
+ * @Qualifier  autowire=byName, @Autowired注解判断多个bean类型相同时，
+ * 	就需要使用 @Qualifier("xxBean") 来指定依赖的bean的id：
+ * 示例：
+ * 	@Autowired
+ * 	@Qualifier("userSerivce")
+ * 	private UserService userService;
+ *
+ * @Resource 用于属性域和方法上。也是byName类型的依赖注入。
+ * 	使用方式：
+ * 		@Resource(name="xxBean"). 不带参数的 @Resource 默认值类名首字母小写。
+ * 	推荐使用：
+ * 		@Resource注解在字段上，这样就不用写setter方法了，并且这个注解是属于J2EE的，减少了与spring的耦合。
+ *
+ * 以下几个都是产生Bean的注释，@Controller,@Service,@Repository都是@Component的细化
+ * @Component 所有受Spring管理组件的通用形式，@Component注解可以放在类的头上，@Component不推荐使用
+ * @Controller 用于标注控制层组件（如struts中的action）
+ * @Service 用于标注业务层组件
+ * @Repository 用于标注数据访问组件，即DAO组件
+ */
+
 @Controller
 @SessionAttributes("loginUser")
 @RequestMapping("/user")

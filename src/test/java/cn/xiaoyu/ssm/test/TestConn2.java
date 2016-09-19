@@ -1,6 +1,7 @@
 package cn.xiaoyu.ssm.test;
 
 import cn.xiaoyu.ssm.service.UserService;
+import org.apache.ibatis.session.SqlSessionFactory;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
@@ -21,8 +22,8 @@ public class TestConn2 {
     @Test
     @Ignore
     public void openSession(){
-        System.out.println(ctx.getBean("sqlSessionFactory"));
-        UserService bean = (UserService) ctx.getBean("userService");
+        System.out.println(ctx.getBean("sqlSessionFactory", SqlSessionFactory.class));
+        UserService bean = ctx.getBean("userService",UserService.class);
     }
 
 }

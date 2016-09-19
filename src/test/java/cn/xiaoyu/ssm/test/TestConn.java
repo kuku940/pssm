@@ -1,5 +1,7 @@
 package cn.xiaoyu.ssm.test;
 
+import cn.xiaoyu.ssm.dao.UserDao;
+import cn.xiaoyu.ssm.dao.ZreadingDao;
 import cn.xiaoyu.ssm.domain.User;
 import cn.xiaoyu.ssm.service.UserService;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -20,11 +22,15 @@ import java.util.List;
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {"classpath*:beans*.xml"})
-public class TestCoon {
-    @Resource
+public class TestConn {
+    @Resource(name = "userService")
     private UserService userService;
     @Resource
     private SqlSessionFactory sqlSessionFactory;
+    @Resource
+    private UserDao userDao;
+    @Resource
+    private ZreadingDao zreadingDao;
 
     @Test
     public void testSelect() throws SQLException {
@@ -47,5 +53,12 @@ public class TestCoon {
         for (User user : list) {
             System.out.println(user);
         }
+    }
+
+    @Test
+    public void testGetUserDao(){
+        User user = userDao.getUserById(1);
+        System.out.println(user);
+        System.out.println(zreadingDao);
     }
 }

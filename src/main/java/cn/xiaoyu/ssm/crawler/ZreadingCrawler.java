@@ -1,7 +1,7 @@
 package cn.xiaoyu.ssm.crawler;
 
 import cn.xiaoyu.ssm.domain.Zreading;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Controller;
 import us.codecraft.webmagic.Site;
 import us.codecraft.webmagic.model.OOSpider;
 import us.codecraft.webmagic.pipeline.PageModelPipeline;
@@ -11,9 +11,9 @@ import javax.annotation.Resource;
 /**
  * Created by Administrator on 2016/9/7.
  */
-@Component
+@Controller("zreadingCrawler")
 public class ZreadingCrawler {
-    @Resource
+    @Resource(name="zreadingPipline")
     private PageModelPipeline<Zreading> zreadingPageModelPipeline;
 
     public void crawl(){

@@ -2,7 +2,7 @@ package cn.xiaoyu.ssm.pipline;
 
 import cn.xiaoyu.ssm.dao.ZreadingDao;
 import cn.xiaoyu.ssm.domain.Zreading;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 import us.codecraft.webmagic.Task;
 import us.codecraft.webmagic.pipeline.PageModelPipeline;
 
@@ -11,7 +11,7 @@ import javax.annotation.Resource;
 /**
  * Created by Administrator on 2016/9/7.
  */
-@Component("zreadingPipline")
+@Service("zreadingPipline")
 public class ZreadingPipline implements PageModelPipeline<Zreading> {
 
     @Resource

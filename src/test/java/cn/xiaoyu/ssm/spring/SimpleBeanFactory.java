@@ -12,6 +12,7 @@ import org.springframework.core.io.ClassPathResource;
 public class SimpleBeanFactory {
     public static void main(String[] args) {
         // 创建ioc配置文件的抽象资源，这个抽象资源包含了BeanDefinition的定义信息
+        // 获取bean.xml以及classLoader加载器
         ClassPathResource resource = new ClassPathResource("beans.xml");
 
         // 创建一个BeanFactory
@@ -42,6 +43,7 @@ public class SimpleBeanFactory {
          */
         reader.loadBeanDefinitions(resource);
 
+        //经过上述处理后，facatory中就有了BeanDefinitionMap和BeanDefinitionNames两个属性，这儿包含了有的所有的bean节点
         UserService bean = factory.getBean("userService", UserService.class);
         System.out.println(bean);
     }
