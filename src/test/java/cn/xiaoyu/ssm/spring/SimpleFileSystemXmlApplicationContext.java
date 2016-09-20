@@ -1,10 +1,11 @@
 package cn.xiaoyu.ssm.spring;
 
 import cn.xiaoyu.ssm.dao.ZreadingDao;
+import org.springframework.beans.BeanWrapper;
+import org.springframework.beans.factory.BeanFactory;
 import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.beans.factory.config.BeanDefinitionHolder;
-import org.springframework.beans.factory.support.BeanDefinitionReaderUtils;
-import org.springframework.beans.factory.support.BeanDefinitionRegistry;
+import org.springframework.beans.factory.support.*;
 import org.springframework.beans.factory.xml.BeanDefinitionParserDelegate;
 import org.springframework.beans.factory.xml.DefaultBeanDefinitionDocumentReader;
 import org.springframework.beans.factory.xml.ParserContext;
@@ -55,7 +56,23 @@ import org.w3c.dom.Element;
  * 依赖注入
  * ---------------------------------
  * @see AbstractApplicationContext#refresh()
- * 1、
+ *
+ * -> finishBeanFactoryInitialization(beanFactory); //初始化一些单例模式的Bean
+ *
+ * @see AbstractBeanFactory#doGetBean(String, Class, Object[], boolean)
+ * 1、实际触发依赖注入的地方
+ *  这儿会调用的方法来创建一个Bean方法 - sharedInstance = getSingleton(beanName, new ObjectFactory<Object>(){}
+ *      回调createBean(beanName, mbd, args); -> doCreateBean(beanName, mbdToUse, args);
+ *
+ *      初始化Bean对象
+ *      @see SimpleInstantiationStrategy#instantiate(RootBeanDefinition, String, BeanFactory)
+ *          2、BeanUtils.instantiateClass(constructorToUse); 获取构造方法，然后将bean初始化
+ *
+ *      populateBean(beanName, mbd, instanceWrapper); //给指定的Bean填充属性
+ *      @see AbstractAutowireCapableBeanFactory#populateBean(String, RootBeanDefinition, BeanWrapper)
+ *          -> ibp.postProcessPropertyValues(pvs, filteredPds, bw.getWrappedInstance(), beanName) 注入属性
+ *              ->
+ *
  */
 public class SimpleFileSystemXmlApplicationContext {
     public static void main(String[] args) {
