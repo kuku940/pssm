@@ -71,7 +71,6 @@ import org.w3c.dom.Element;
  *      populateBean(beanName, mbd, instanceWrapper); //给指定的Bean填充属性
  *      @see AbstractAutowireCapableBeanFactory#populateBean(String, RootBeanDefinition, BeanWrapper)
  *          -> ibp.postProcessPropertyValues(pvs, filteredPds, bw.getWrappedInstance(), beanName) 注入属性
- *              ->
  *
  */
 public class SimpleFileSystemXmlApplicationContext {
