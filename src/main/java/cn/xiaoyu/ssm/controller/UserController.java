@@ -152,4 +152,9 @@ public class UserController {
 		List<User> users = userService.getAllUsers(pageIndex,pageSize);
 		return users;
 	}
+
+	@RequestMapping(value="/touch",method=RequestMethod.GET)
+	public String touch(){
+		return "user/list";
+	}
 }

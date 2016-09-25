@@ -4,4 +4,8 @@
     <insert id="save" parameterType="_Zreading" useGeneratedKeys="true" keyProperty="id">
       insert into zreading(title,author,publishDate,url,acticle) VALUES (#{title},#{author},#{publishDate},#{url},#{acticle})
     </insert>
+
+    <select id="getByUrl" parameterType="String" resultType="_Zreading">
+        select * from zreading where url = #{url}
+    </select>
 </mapper>

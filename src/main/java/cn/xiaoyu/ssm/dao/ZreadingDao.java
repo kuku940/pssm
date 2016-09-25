@@ -12,4 +12,6 @@ public interface ZreadingDao {
      * @return
      */
     int save(Zreading zreading);
+
+    Zreading getByUrl(String url);
 }
