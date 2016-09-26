@@ -2,13 +2,8 @@ package cn.xiaoyu.ssm.domain;
 
 import us.codecraft.webmagic.Page;
 import us.codecraft.webmagic.model.AfterExtractor;
-import us.codecraft.webmagic.model.annotation.ExtractBy;
-import us.codecraft.webmagic.model.annotation.ExtractByUrl;
-import us.codecraft.webmagic.model.annotation.HelpUrl;
-import us.codecraft.webmagic.model.annotation.TargetUrl;
+import us.codecraft.webmagic.model.annotation.*;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
@@ -24,8 +19,8 @@ public class Zreading implements AfterExtractor {
     private int id;
     @ExtractBy("//title/text()")
     private String title;
+    @Formatter("yyyy-MM-dd")
     @ExtractBy("//span[@itemprop='datePublished']/text()")
-    private String publishDateStr;
     private Date publishDate;
     @ExtractBy("//span[@itemprop='author']/a/text()")
     private String author;
@@ -36,13 +31,7 @@ public class Zreading implements AfterExtractor {
 
     @Override
     public void afterProcess(Page page) {
-        try {
-            //后续处理发布日期转换成为时间格式
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-            this.setPublishDate(sdf.parse(this.publishDateStr));
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
+        //进行一些后续处理
     }
 
     public int getId() {
@@ -91,14 +80,6 @@ public class Zreading implements AfterExtractor {
 
     public void setActicle(String acticle) {
         this.acticle = acticle;
-    }
-
-    public String getPublishDateStr() {
-        return publishDateStr;
-    }
-
-    public void setPublishDateStr(String publishDateStr) {
-        this.publishDateStr = publishDateStr;
     }
 
 }
