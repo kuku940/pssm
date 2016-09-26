@@ -14,6 +14,9 @@ import java.util.Date;
 /**
  * Created by Administrator on 2016/9/7.
  * 左岸读书 实体对象
+ *
+ * TargetUrl 需要爬取的页面
+ * HelpUrl 需要爬取的列表页面
  */
 @TargetUrl("http://www.zreading.cn/archives/\\d+.html")
 @HelpUrl("http://www.zreading.cn/page/\\d+")
@@ -30,6 +33,17 @@ public class Zreading implements AfterExtractor {
     private String url;
     @ExtractBy("//div[@itemprop='description']")
     private String acticle;
+
+    @Override
+    public void afterProcess(Page page) {
+        try {
+            //后续处理发布日期转换成为时间格式
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+            this.setPublishDate(sdf.parse(this.publishDateStr));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+    }
 
     public int getId() {
         return id;
@@ -87,16 +101,4 @@ public class Zreading implements AfterExtractor {
         this.publishDateStr = publishDateStr;
     }
 
-    @Override
-    public void afterProcess(Page page) {
-        try {
-            /**
-             * 后续处理发布日期转换成为时间格式
-             */
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-            this.setPublishDate(sdf.parse(this.publishDateStr));
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-    }
 }

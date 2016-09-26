@@ -19,6 +19,7 @@ public class ZreadingPipline implements PageModelPipeline<Zreading> {
 
     @Override
     public void process(Zreading zreading, Task task) {
+        // 只做增量更新，如果该对应存在的话，就不需要将这条数据更新
         Zreading z1 = zreadingDao.getByUrl(zreading.getUrl());
         if(z1 == null){
             // 调用Mybatis Dao保存结果

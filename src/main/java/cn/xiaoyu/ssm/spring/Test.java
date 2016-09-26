@@ -36,7 +36,8 @@ import java.util.List;
 
 /**
  * Created by roin_zhang on 2016/9/21.
- * Spring AOP的分析
+ *
+ * 《Spring AOP的分析》
  *
  * 1、解析bean，从配置文件的beans-autoproxy.xml的<aop:aspectj-autoproxy>进行解析
  *   如果不是bean标签，则会用不同的类解析。解析AOP的是：AopNamespaceHandler类
@@ -89,7 +90,7 @@ import java.util.List;
  *  @see AnnotationAwareAspectJAutoProxyCreator#getAdvicesAndAdvisorsForBean(Class, String, TargetSource)
  *      @see AnnotationAwareAspectJAutoProxyCreator#findEligibleAdvisors(Class, String)
  *          -- findCandidateAdvisors() - 获取所有的增强，通知器的解析
- *          -- findAdvisorsThatCanApply() -
+ *          -- findAdvisorsThatCanApply() - 获取所有可以应用的增强
  *
  *          通知器的解析： -- findCandidateAdvisors()
  *              @see AnnotationAwareAspectJAutoProxyCreator#findCandidateAdvisors()

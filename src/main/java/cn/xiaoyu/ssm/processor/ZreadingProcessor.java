@@ -11,6 +11,8 @@ import java.util.Date;
 
 /**
  * Created by Administrator on 2016/9/7.
+ * 这儿的信息可以使用注释来替代，详见现在的Zreading类
+ * @see Zreading -- 可以将所有的信息都放在注释和后置处理器中
  */
 public class ZreadingProcessor implements PageProcessor{
     private Site site;
