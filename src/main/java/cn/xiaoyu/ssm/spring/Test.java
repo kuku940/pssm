@@ -8,10 +8,7 @@ import org.springframework.aop.Advisor;
 import org.springframework.aop.MethodMatcher;
 import org.springframework.aop.Pointcut;
 import org.springframework.aop.TargetSource;
-import org.springframework.aop.aspectj.AbstractAspectJAdvice;
-import org.springframework.aop.aspectj.AspectJAfterReturningAdvice;
-import org.springframework.aop.aspectj.AspectJExpressionPointcut;
-import org.springframework.aop.aspectj.AspectJMethodBeforeAdvice;
+import org.springframework.aop.aspectj.*;
 import org.springframework.aop.aspectj.annotation.*;
 import org.springframework.aop.config.AopNamespaceHandler;
 import org.springframework.aop.framework.*;
@@ -143,6 +140,9 @@ import java.util.List;
  *          CGlib字节码生成代理
  *          @see CglibAopProxy#getProxy(ClassLoader) - 创建 Spring 的 Enhancer 过程
  *          @see CglibAopProxy#getCallbacks(Class) - 设置拦截器链
+ *
+ *
+ * @see AspectJAfterAdvice#invoke(MethodInvocation)
  *
  */
 public class Test {
