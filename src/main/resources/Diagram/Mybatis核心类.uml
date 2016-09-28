@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>org.mybatis.spring.mapper.MapperFactoryBean</OriginalElement>
+  <nodes>
+    <node x="31.0" y="80.0">org.springframework.dao.support.DaoSupport</node>
+    <node x="185.0" y="160.0">org.springframework.beans.factory.FactoryBean</node>
+    <node x="243.16666666666669" y="240.0">org.mybatis.spring.SqlSessionFactoryBean</node>
+    <node x="0.0" y="160.0">org.mybatis.spring.support.SqlSessionDaoSupport</node>
+    <node x="66.7777777777778" y="240.0">org.mybatis.spring.mapper.MapperFactoryBean</node>
+    <node x="329.2361111111111" y="160.0">org.springframework.context.ApplicationListener</node>
+    <node x="144.91666666666669" y="0.0">org.springframework.beans.factory.InitializingBean</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="org.mybatis.spring.mapper.MapperFactoryBean" target="org.mybatis.spring.support.SqlSessionDaoSupport">
+      <point x="-37.5" y="-15.0" />
+      <point x="104.2777777777778" y="215.0" />
+      <point x="82.5" y="215.0" />
+      <point x="0.0" y="15.0" />
+    </edge>
+    <edge source="org.mybatis.spring.SqlSessionFactoryBean" target="org.springframework.context.ApplicationListener">
+      <point x="55.0" y="-15.0" />
+      <point x="380.6666666666667" y="215.0" />
+      <point x="400.2361111111111" y="215.0" />
+      <point x="0.0" y="15.0" />
+    </edge>
+    <edge source="org.springframework.dao.support.DaoSupport" target="org.springframework.beans.factory.InitializingBean">
+      <point x="0.0" y="-15.0" />
+      <point x="82.5" y="55.0" />
+      <point x="174.66666666666669" y="55.0" />
+      <point x="-29.75" y="15.0" />
+    </edge>
+    <edge source="org.mybatis.spring.mapper.MapperFactoryBean" target="org.springframework.beans.factory.FactoryBean">
+      <point x="37.5" y="-15.0" />
+      <point x="179.2777777777778" y="215.0" />
+      <point x="210.75" y="215.0" />
+      <point x="-25.75" y="15.0" />
+    </edge>
+    <edge source="org.mybatis.spring.SqlSessionFactoryBean" target="org.springframework.beans.factory.FactoryBean">
+      <point x="-55.0" y="-15.0" />
+      <point x="270.6666666666667" y="215.0" />
+      <point x="262.25" y="215.0" />
+      <point x="25.75" y="15.0" />
+    </edge>
+    <edge source="org.mybatis.spring.support.SqlSessionDaoSupport" target="org.springframework.dao.support.DaoSupport">
+      <point x="0.0" y="-15.0" />
+      <point x="0.0" y="15.0" />
+    </edge>
+    <edge source="org.mybatis.spring.SqlSessionFactoryBean" target="org.springframework.beans.factory.InitializingBean">
+      <point x="0.0" y="-15.0" />
+      <point x="325.6666666666667" y="215.0" />
+      <point x="318.7361111111111" y="215.0" />
+      <point x="318.7361111111111" y="55.0" />
+      <point x="234.16666666666669" y="55.0" />
+      <point x="29.75" y="15.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="1.0" x="236.0" y="135.0" />
+  <SelectedNodes />
+  <Categories />
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
