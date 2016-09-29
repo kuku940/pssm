@@ -21,6 +21,7 @@ import java.io.FileInputStream;
 public class MyClassLoader extends ClassLoader {
 
     private String pathDir;
+    private final String fileType = ".class";
 
     public MyClassLoader(String pathDir) {
         //让系统类加载器成为该类加载器的父加载器
@@ -41,7 +42,7 @@ public class MyClassLoader extends ClassLoader {
      */
     @Override
     protected Class<?> findClass(String name) throws ClassNotFoundException {
-        String filename = pathDir + "/" + name.substring(name.lastIndexOf('.')+1) + ".class";
+        String filename = pathDir + "/" + name.replace('.','/') + fileType;
         System.out.println(filename);
         FileInputStream fis = null;
         ByteArrayOutputStream bos = null;

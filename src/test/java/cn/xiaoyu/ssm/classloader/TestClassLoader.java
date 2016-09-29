@@ -14,7 +14,8 @@ public class TestClassLoader {
      * @param args
      */
     public static void main(String[] args) throws Exception {
-        Class clazz = new MyClassLoader("D:/sp").loadClass("cn.xiaoyu.ssm.classloader.Student");
+        ClassLoader classLoader = new MyClassLoader("D:/sp");
+        Class clazz = new MyClassLoader(classLoader,"D:/patch").loadClass("cn.xiaoyu.ssm.classloader.Student");
 
         Object obj = clazz.newInstance();
         System.out.println(obj);
@@ -38,8 +39,3 @@ public class TestClassLoader {
     }
 }
 
-class Student{
-    public String toString(){
-        return "number -> 123";
-    }
-}
