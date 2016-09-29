@@ -29,6 +29,27 @@ public class MyExtensionClassLoader extends ClassLoader {
     }
 
     /**
+     * 打破双亲模式
+     *
+     * @param name
+     * @return
+     * @throws ClassNotFoundException
+     */
+    @Override
+    public Class<?> loadClass(String name) throws ClassNotFoundException {
+        // 双亲委派模式，可以看源码了解
+        Class<?> c = super.loadClass(name);
+
+        try{
+            Class<?> c1 = findClass(name+"Ex");
+            return c1;
+        } catch (ClassNotFoundException e) {
+            //该扩展类无法完成类加载请求的话，调用父类的方法
+        }
+        return c;
+    }
+
+    /**
      * @param name 类的二进制名称 cn.xiaoyu.test.Student
      * @return Class对象
      * @throws ClassNotFoundException
@@ -36,16 +57,17 @@ public class MyExtensionClassLoader extends ClassLoader {
     @Override
     protected Class<?> findClass(String name) throws ClassNotFoundException {
         try {
-            byte[] bytes = getClassData(name);
+            String filename = pathDir + "/" + name.replace('.', '/') + fileType;
+            System.out.println(filename);
+
+            byte[] bytes = getClassData(filename);
             return defineClass(name, bytes, 0, bytes.length);
         } catch (IOException e) {
         }
         return super.findClass(name);
     }
 
-    private byte[] getClassData(String name) throws IOException {
-        String filename = pathDir + "/" + name.replace('.', '/') + "Ex" + fileType;
-        System.out.println(filename);
+    private byte[] getClassData(String filename) throws IOException {
         FileInputStream fis = null;
         ByteArrayOutputStream bos = null;
         byte[] bytes = null;

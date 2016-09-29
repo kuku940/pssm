@@ -18,15 +18,15 @@ public class TestClassLoader {
          * 故这儿如果sp下面有的优先加载sp下面的，如果没有则加载子类的
          *
          * 这儿没有双亲
-         * BootStrapClassLoader - null,启动类加载器
-         * ExtensionClassLoader - 扩展类加载器
-         * ApplicationClassLoader - 系统类加载器
-         * 自定义类加载器
+         * BootStrapClassLoader - null,启动类加载器       jre/lib/rt.jar
+         * ExtClassLoader - 扩展类加载器            jre/lib/ext/*.jar
+         * AppClassLoader - 系统类加载器          classpath指定的所有的jar和目录
+         * 自定义类加载器                                 自己指定的特殊目录
          *
          * 这儿需要在D:\jar\ext\cn\xiaoyu\ssm\classloader文件夹下面有Student类
          */
         ClassLoader classLoader = new MyClassLoader("D:/jar/sp");
-        Class clazz = new MyClassLoader(classLoader,"D:/jar/ext").loadClass("cn.xiaoyu.ssm.classloader.Student");
+        Class clazz = new MyExtensionClassLoader(classLoader,"D:/jar/ext").loadClass("cn.xiaoyu.ssm.classloader.Student");
 
         Object obj = clazz.newInstance();
         System.out.println(obj);
