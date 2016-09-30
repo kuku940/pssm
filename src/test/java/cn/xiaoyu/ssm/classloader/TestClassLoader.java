@@ -49,7 +49,7 @@ public class TestClassLoader {
          * 最后，按照委托机制，从上向下加载！
          *
          * 如果不想打破双亲委托机制的话，可以直接从上向下加载这样就可以将优先加载父类，然后在加载子类，这样也可以
-         * 实现金蝶的补丁的类似效果
+         * 实现金蝶的补丁和私包的类似效果
          */
         ClassLoader classLoader = new MyClassLoader("D:/jar/patch");
         ClassLoader extensionClassLoader = new MyExtensionClassLoader(classLoader,"D:/jar/ext");

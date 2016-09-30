@@ -28,6 +28,7 @@ public class Server {
         // 当该事件到达时，selector.select()会返回，如果该事件没到达selector.select()会一直阻塞
         serverChannel.register(selector, SelectionKey.OP_ACCEPT);
     }
+
     /**
      * 采用轮询的方式监听selector上是否有需要处理的事件，如果有，则进行处理
      * @throws IOException
