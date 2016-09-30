@@ -35,6 +35,17 @@ public class MyClassLoader extends ClassLoader {
         this.pathDir = pathDir;
     }
 
+    @Override
+    public Class<?> loadClass(String name) throws ClassNotFoundException {
+        try{
+            Class<?> c = findClass(name);
+            return c;
+        } catch (ClassNotFoundException e) {
+            //无法完成类加载请求的话，调用父类的方法
+        }
+        return this.getParent().loadClass(name);
+    }
+
     /**
      * @param name 类的二进制名称 cn.xiaoyu.test.Student
      * @return Class对象
@@ -43,7 +54,7 @@ public class MyClassLoader extends ClassLoader {
     @Override
     protected Class<?> findClass(String name) throws ClassNotFoundException {
         String filename = pathDir + "/" + name.replace('.','/') + fileType;
-        System.out.println(filename);
+        System.out.println("MyClassLoader:"+filename);
         FileInputStream fis = null;
         ByteArrayOutputStream bos = null;
         int b;

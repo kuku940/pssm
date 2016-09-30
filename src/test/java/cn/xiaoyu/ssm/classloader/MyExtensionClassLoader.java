@@ -17,7 +17,7 @@ public class MyExtensionClassLoader extends ClassLoader {
     private final String fileType = ".class";
 
     public MyExtensionClassLoader(String pathDir) {
-        //让系统类加载器成为该类加载器的父加载器
+        //让系统类加载器AppClassLoader 成为该类加载器的父加载器
         super();
         this.pathDir = pathDir;
     }
@@ -36,16 +36,15 @@ public class MyExtensionClassLoader extends ClassLoader {
      */
     @Override
     public Class<?> loadClass(String name) throws ClassNotFoundException {
-        // 双亲委派模式，可以看源码了解
-        Class<?> c = super.loadClass(name);
-
         try{
-            Class<?> c1 = findClass(name+"Ex");
-            return c1;
+            Class<?> c = findClass(name);
+            return c;
         } catch (ClassNotFoundException e) {
-            //该扩展类无法完成类加载请求的话，调用父类的方法
+            //获取该路径类失败
         }
-        return c;
+
+        //这个使用这种方式调用，而不是采用super方式，防止直接调用ClassLoader的loadClass()方法
+        return this.getParent().loadClass(name);
     }
 
     /**
@@ -57,7 +56,7 @@ public class MyExtensionClassLoader extends ClassLoader {
     protected Class<?> findClass(String name) throws ClassNotFoundException {
         try {
             String filename = pathDir + "/" + name.replace('.', '/') + fileType;
-            System.out.println(filename);
+            System.out.println("MyExtensionClassLoader:"+filename);
 
             byte[] bytes = getClassData(filename);
             return defineClass(name, bytes, 0, bytes.length);

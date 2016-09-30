@@ -3,6 +3,7 @@ package cn.xiaoyu.ssm.classloader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.lang.reflect.Method;
 
 /**
  * Created by roin_zhang on 2016/9/29.
@@ -12,7 +13,7 @@ public class TestClassLoader {
      * 测试自己的类加载器
      * @param args
      */
-    public static void main(String[] args) throws IllegalAccessException, InstantiationException, ClassNotFoundException {
+    public static void main(String[] args) throws Exception{
         /**
          * 因为jar类加载器加载是从上往下加载的，使用是从下往上使用的，所以这儿优先使用父类的类
          * 故这儿如果sp下面有的优先加载sp下面的，如果没有则加载子类的
@@ -24,12 +25,41 @@ public class TestClassLoader {
          * 自定义类加载器                                 自己指定的特殊目录
          *
          * 这儿需要在D:\jar\ext\cn\xiaoyu\ssm\classloader文件夹下面有Student类
+         *
          */
-        ClassLoader classLoader = new MyClassLoader("D:/jar/sp");
-        Class clazz = new MyExtensionClassLoader(classLoader,"D:/jar/ext").loadClass("cn.xiaoyu.ssm.classloader.Student");
+        Class clazz = getClazz("cn.xiaoyu.ssm.classloader.Student");
 
         Object obj = clazz.newInstance();
         System.out.println(obj);
+
+        try{
+            //通过反射调用print方法
+            Method method = clazz.getMethod("print");
+            method.invoke(obj);
+        }catch (NoSuchMethodException e){
+            System.out.println("Ex类未找到！");
+        }
+    }
+
+    public static Class getClazz(String name) throws ClassNotFoundException {
+        /**
+         * 使用覆写父类的loadClass方法，打破了双亲委托机制，实现了自己优先加载，然后再加载父类的class
+         *
+         * 这种类加载的顺序：优先加载Ext下面的扩展类，然后在加载Ext下面的类，然后加载patch下面的类
+         * 最后，按照委托机制，从上向下加载！
+         *
+         * 如果不想打破双亲委托机制的话，可以直接从上向下加载这样就可以将优先加载父类，然后在加载子类，这样也可以
+         * 实现金蝶的补丁的类似效果
+         */
+        ClassLoader classLoader = new MyClassLoader("D:/jar/patch");
+        ClassLoader extensionClassLoader = new MyExtensionClassLoader(classLoader,"D:/jar/ext");
+        try{
+            //优先加载扩展类，如果没有则加载自己
+           return extensionClassLoader.loadClass(name+"Ex");
+        }catch (Exception e){
+
+        }
+        return extensionClassLoader.loadClass(name);
     }
 
     /**
