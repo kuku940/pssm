@@ -30,7 +30,6 @@ public class MyExtensionClassLoader extends ClassLoader {
 
     /**
      * 打破双亲模式
-     *
      * @param name
      * @return
      * @throws ClassNotFoundException
