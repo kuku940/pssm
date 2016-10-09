@@ -67,8 +67,9 @@ public class Server {
                     // 服务器可读取消息:得到事件发生的Socket通道
                     SocketChannel channel = (SocketChannel) key.channel();
                     // 创建读取的缓冲区
-                    ByteBuffer buffer = ByteBuffer.allocate(100);
-                    channel.read(buffer);
+                    ByteBuffer buffer = ByteBuffer.allocate(1024);
+//                    ByteBuffer buffer = ByteBuffer.allocateDirect(1024);
+                    int readBytes = channel.read(buffer);
                     byte[] data = buffer.array();
                     String msg = new String(data,"utf-8").trim();
                     System.out.println("服务端收到信息："+msg);

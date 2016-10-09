@@ -7,6 +7,8 @@ import io.netty.channel.EventLoopGroup;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioSocketChannel;
+import io.netty.handler.codec.LineBasedFrameDecoder;
+import io.netty.handler.codec.string.StringDecoder;
 
 import java.net.InetSocketAddress;
 
@@ -26,6 +28,7 @@ public class EchoClient {
     }
 
     public void start() throws Exception{
+        // 配置客户端NIO线程组
         EventLoopGroup workGroup = new NioEventLoopGroup();
         try{
             Bootstrap bootstrap = new Bootstrap();
@@ -39,6 +42,11 @@ public class EchoClient {
                     .handler(new ChannelInitializer<SocketChannel>() {
                         @Override
                         protected void initChannel(SocketChannel socketChannel) throws Exception {
+                            //添加LineBasedFrameDecoder和StringDecoder解码器
+                            socketChannel.pipeline().addLast(new LineBasedFrameDecoder(1024));
+                            socketChannel.pipeline().addLast(new StringDecoder());
+
+                            //将ChannelHandler设置到ChannelPipeline中，用于处理网络I/O事件
                             socketChannel.pipeline().addLast(new EchoClientHandler());
                         }
                     });
