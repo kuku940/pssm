@@ -333,7 +333,21 @@
       <version>2.6.1</version>
     </dependency>
 
-    <!-- webmagic java爬虫 -->
+    <!-- MessagePack编解码 -->
+      <dependency>
+          <groupId>org.msgpack</groupId>
+          <artifactId>msgpack</artifactId>
+          <version>0.6.12</version>
+          <exclusions>
+            <exclusion>
+              <groupId>org.javassist</groupId>
+              <artifactId>javassist</artifactId>
+            </exclusion>
+          </exclusions>
+      </dependency>
+
+
+      <!-- webmagic java爬虫 -->
     <dependency>
       <groupId>us.codecraft</groupId>
       <artifactId>webmagic-core</artifactId>
