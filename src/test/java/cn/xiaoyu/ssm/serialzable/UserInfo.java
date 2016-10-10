@@ -1,10 +1,13 @@
 package cn.xiaoyu.ssm.serialzable;
 
+import org.msgpack.annotation.Message;
+
 import java.io.Serializable;
 
 /**
  * Created by roin_zhang on 2016/10/10.
  */
+@Message
 public class UserInfo implements Serializable{
     private static final long serialVersionUID = 1L;
     private int age;
