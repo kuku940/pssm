@@ -36,8 +36,6 @@ public class EchoClient {
             bootstrap.group(workGroup)
                     // 用于NIO传输的Channel类型
                     .channel(NioSocketChannel.class)
-                    // 设置服务器的InetSocketAddress
-                    .remoteAddress(new InetSocketAddress(host,port))
                     // 当一个Channel创建时，把一个EchoClinet加入他的pipeline中
                     .handler(new ChannelInitializer<SocketChannel>() {
                         @Override
@@ -47,11 +45,11 @@ public class EchoClient {
                             socketChannel.pipeline().addLast(new StringDecoder());
 
                             //将ChannelHandler设置到ChannelPipeline中，用于处理网络I/O事件
-                            socketChannel.pipeline().addLast(new EchoClientHandler());
+                            socketChannel.pipeline().addLast(new EchoClientHandler(100));
                         }
                     });
             // 链接到远端，一直等到链接完成
-            ChannelFuture future = bootstrap.connect().sync();
+            ChannelFuture future = bootstrap.connect(new InetSocketAddress(host,port)).sync();
             // 关闭连接池，释放所有资源
             future.channel().closeFuture().sync();
         }finally{

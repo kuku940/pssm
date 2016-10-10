@@ -12,25 +12,25 @@ import java.util.Date;
 
 /**
  * Created by Administrator on 2016/10/2.
+ * 考虑拆包和粘包
  */
 public class EchoServerHandler extends ChannelInboundHandlerAdapter{
+    private int counter = 0;
     @Override
     /**
      * 表明一个ChannelHandler可以被多个Channel安全地共享
      * 每次接收消息时被调用
      */
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
-//        ByteBuf in = (ByteBuf)msg; //使用了LineBasedFrameDecoder和StringDecoder解码器不要这么读了
-//        // 将消息打印到控制台
-//        System.out.println("Server received:"+in.toString(CharsetUtil.UTF_8));
-        String body = (String) msg;
-        System.out.println("Server received:"+body);
 
-        // 将当前时间写入发送方，不刷新输出消息
+        //直接打印读取到的字符
+        System.out.println("Server received:"+msg+";this counter is:"+ ++counter);
+
+        //输出服务器端接受到的时间
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
         String currentTime = "currentTime is "+sdf.format(new Date());
-        ByteBuf resp = Unpooled.copiedBuffer(currentTime,CharsetUtil.UTF_8);
-        ctx.write(resp);
+        ByteBuf resp = Unpooled.copiedBuffer(currentTime+System.getProperty("line.separator"),CharsetUtil.UTF_8);
+        ctx.writeAndFlush(resp);
     }
 
     @Override

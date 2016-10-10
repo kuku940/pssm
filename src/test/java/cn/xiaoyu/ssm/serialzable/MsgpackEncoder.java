@@ -9,10 +9,10 @@ import org.msgpack.MessagePack;
  * Created by roin_zhang on 2016/10/10.
  * msgPack编码器
  */
-public class MsgpackEncoder extends MessageToByteEncoder<Object>{
+public class MsgpackEncoder extends MessageToByteEncoder<UserInfo>{
 
     @Override
-    protected void encode(ChannelHandlerContext channelHandlerContext, Object o, ByteBuf byteBuf) throws Exception {
+    protected void encode(ChannelHandlerContext channelHandlerContext, UserInfo o, ByteBuf byteBuf) throws Exception {
         MessagePack msgpack = new MessagePack();
         byte[] raw = msgpack.write(o);
         byteBuf.writeBytes(raw);

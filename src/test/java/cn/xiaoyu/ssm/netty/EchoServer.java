@@ -10,8 +10,6 @@ import io.netty.channel.socket.nio.NioServerSocketChannel;
 import io.netty.handler.codec.LineBasedFrameDecoder;
 import io.netty.handler.codec.string.StringDecoder;
 
-import java.net.InetSocketAddress;
-
 /**
  * Created by Administrator on 2016/10/2.
  */
@@ -36,13 +34,12 @@ public class EchoServer {
             bootstrap.group(bossGroup,workerGroup)
                     // 指定使用一个NIO传输Channel
                     .channel(NioServerSocketChannel.class)
-                    //指定端口设置的socket地址
-                    .localAddress(new InetSocketAddress(port))
                     // 在Channel的ChannelPipeline中加入EchoServerHandler
                     .childHandler(new ChannelInitializer<SocketChannel>() {
                         @Override
                         protected void initChannel(SocketChannel socketChannel) throws Exception {
                             //添加LineBasedFrameDecoder和StringDecoder解码器
+                            // 第一个参数1024表示单条记录的最大长度，当达到这个长度后会抛出TooLoogFrameException异常
                             socketChannel.pipeline().addLast(new LineBasedFrameDecoder(1024));
                             socketChannel.pipeline().addLast(new StringDecoder());
 
@@ -51,7 +48,7 @@ public class EchoServer {
                         }
                     });
             //异步地绑定服务器，sync()同步等待绑定完成
-            ChannelFuture future = bootstrap.bind().sync();
+            ChannelFuture future = bootstrap.bind(port).sync();
             //获得这个Channel的closeFuture，阻塞当前线程直到关闭操作完成
             future.channel().closeFuture().sync();
         } finally {

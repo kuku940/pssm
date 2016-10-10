@@ -13,8 +13,16 @@ public class UserInfo implements Serializable{
     private int age;
     private String name;
 
+    public UserInfo(String name,int age) {
+        this.age = age;
+        this.name = name;
+    }
+
+    public UserInfo(){}
+
     public int getAge() {
         return age;
+
     }
 
     public void setAge(int age) {
