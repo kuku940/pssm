@@ -1,4 +1,4 @@
-package cn.xiaoyu.ssm.serialzable;
+package cn.xiaoyu.ssm.messagepack;
 
 import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.ChannelFuture;

@@ -1,0 +1,21 @@
+option java_package = "cn.xiaoyu.ssm.protobuf";
+option java_outer_classname = "PersonInfo";
+
+message Person{
+	required int32 id = 1;
+	required string username = 2;
+	optional string email = 3;
+	required Subject subject = 4;
+}
+
+message Subject{
+	required string name = 1;
+	required int32 grade = 2;
+	required SubjectType type = 3;
+}
+
+enum SubjectType {
+	ENGLISH = 0;
+	CHINESE = 1;
+	MATH = 2;
+}

@@ -1,4 +1,4 @@
-package cn.xiaoyu.ssm.serialzable;
+package cn.xiaoyu.ssm.messagepack;
 
 import org.msgpack.MessagePack;
 import org.msgpack.template.Templates;
