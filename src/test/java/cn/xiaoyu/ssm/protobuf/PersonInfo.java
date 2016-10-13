@@ -141,17 +141,28 @@ public final class PersonInfo {
         getEmailBytes();
 
     /**
-     * <code>required .Subject subject = 4;</code>
+     * <code>repeated .Subject subject = 4;</code>
      */
-    boolean hasSubject();
+    java.util.List<Subject>
+        getSubjectList();
     /**
-     * <code>required .Subject subject = 4;</code>
+     * <code>repeated .Subject subject = 4;</code>
      */
-    Subject getSubject();
+    Subject getSubject(int index);
     /**
-     * <code>required .Subject subject = 4;</code>
+     * <code>repeated .Subject subject = 4;</code>
      */
-    SubjectOrBuilder getSubjectOrBuilder();
+    int getSubjectCount();
+    /**
+     * <code>repeated .Subject subject = 4;</code>
+     */
+    java.util.List<? extends SubjectOrBuilder>
+        getSubjectOrBuilderList();
+    /**
+     * <code>repeated .Subject subject = 4;</code>
+     */
+    SubjectOrBuilder getSubjectOrBuilder(
+            int index);
   }
   /**
    * Protobuf type {@code Person}
@@ -223,16 +234,11 @@ public final class PersonInfo {
               break;
             }
             case 34: {
-              Subject.Builder subBuilder = null;
-              if (((bitField0_ & 0x00000008) == 0x00000008)) {
-                subBuilder = subject_.toBuilder();
+              if (!((mutable_bitField0_ & 0x00000008) == 0x00000008)) {
+                subject_ = new java.util.ArrayList<Subject>();
+                mutable_bitField0_ |= 0x00000008;
               }
-              subject_ = input.readMessage(Subject.PARSER, extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom(subject_);
-                subject_ = subBuilder.buildPartial();
-              }
-              bitField0_ |= 0x00000008;
+              subject_.add(input.readMessage(Subject.PARSER, extensionRegistry));
               break;
             }
           }
@@ -243,6 +249,9 @@ public final class PersonInfo {
         throw new com.google.protobuf.InvalidProtocolBufferException(
             e.getMessage()).setUnfinishedMessage(this);
       } finally {
+        if (((mutable_bitField0_ & 0x00000008) == 0x00000008)) {
+          subject_ = java.util.Collections.unmodifiableList(subject_);
+        }
         this.unknownFields = unknownFields.build();
         makeExtensionsImmutable();
       }
@@ -375,31 +384,45 @@ public final class PersonInfo {
     }
 
     public static final int SUBJECT_FIELD_NUMBER = 4;
-    private Subject subject_;
+    private java.util.List<Subject> subject_;
     /**
-     * <code>required .Subject subject = 4;</code>
+     * <code>repeated .Subject subject = 4;</code>
      */
-    public boolean hasSubject() {
-      return ((bitField0_ & 0x00000008) == 0x00000008);
-    }
-    /**
-     * <code>required .Subject subject = 4;</code>
-     */
-    public Subject getSubject() {
+    public java.util.List<Subject> getSubjectList() {
       return subject_;
     }
     /**
-     * <code>required .Subject subject = 4;</code>
+     * <code>repeated .Subject subject = 4;</code>
      */
-    public SubjectOrBuilder getSubjectOrBuilder() {
+    public java.util.List<? extends SubjectOrBuilder>
+        getSubjectOrBuilderList() {
       return subject_;
+    }
+    /**
+     * <code>repeated .Subject subject = 4;</code>
+     */
+    public int getSubjectCount() {
+      return subject_.size();
+    }
+    /**
+     * <code>repeated .Subject subject = 4;</code>
+     */
+    public Subject getSubject(int index) {
+      return subject_.get(index);
+    }
+    /**
+     * <code>repeated .Subject subject = 4;</code>
+     */
+    public SubjectOrBuilder getSubjectOrBuilder(
+        int index) {
+      return subject_.get(index);
     }
 
     private void initFields() {
       id_ = 0;
       username_ = "";
       email_ = "";
-      subject_ = Subject.getDefaultInstance();
+      subject_ = java.util.Collections.emptyList();
     }
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
@@ -415,13 +438,11 @@ public final class PersonInfo {
         memoizedIsInitialized = 0;
         return false;
       }
-      if (!hasSubject()) {
-        memoizedIsInitialized = 0;
-        return false;
-      }
-      if (!getSubject().isInitialized()) {
-        memoizedIsInitialized = 0;
-        return false;
+      for (int i = 0; i < getSubjectCount(); i++) {
+        if (!getSubject(i).isInitialized()) {
+          memoizedIsInitialized = 0;
+          return false;
+        }
       }
       memoizedIsInitialized = 1;
       return true;
@@ -439,8 +460,8 @@ public final class PersonInfo {
       if (((bitField0_ & 0x00000004) == 0x00000004)) {
         output.writeBytes(3, getEmailBytes());
       }
-      if (((bitField0_ & 0x00000008) == 0x00000008)) {
-        output.writeMessage(4, subject_);
+      for (int i = 0; i < subject_.size(); i++) {
+        output.writeMessage(4, subject_.get(i));
       }
       getUnknownFields().writeTo(output);
     }
@@ -463,9 +484,9 @@ public final class PersonInfo {
         size += com.google.protobuf.CodedOutputStream
           .computeBytesSize(3, getEmailBytes());
       }
-      if (((bitField0_ & 0x00000008) == 0x00000008)) {
+      for (int i = 0; i < subject_.size(); i++) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(4, subject_);
+          .computeMessageSize(4, subject_.get(i));
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
@@ -592,11 +613,11 @@ public final class PersonInfo {
         email_ = "";
         bitField0_ = (bitField0_ & ~0x00000004);
         if (subjectBuilder_ == null) {
-          subject_ = Subject.getDefaultInstance();
+          subject_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000008);
         } else {
           subjectBuilder_.clear();
         }
-        bitField0_ = (bitField0_ & ~0x00000008);
         return this;
       }
 
@@ -637,10 +658,11 @@ public final class PersonInfo {
           to_bitField0_ |= 0x00000004;
         }
         result.email_ = email_;
-        if (((from_bitField0_ & 0x00000008) == 0x00000008)) {
-          to_bitField0_ |= 0x00000008;
-        }
         if (subjectBuilder_ == null) {
+          if (((bitField0_ & 0x00000008) == 0x00000008)) {
+            subject_ = java.util.Collections.unmodifiableList(subject_);
+            bitField0_ = (bitField0_ & ~0x00000008);
+          }
           result.subject_ = subject_;
         } else {
           result.subject_ = subjectBuilder_.build();
@@ -674,8 +696,31 @@ public final class PersonInfo {
           email_ = other.email_;
           onChanged();
         }
-        if (other.hasSubject()) {
-          mergeSubject(other.getSubject());
+        if (subjectBuilder_ == null) {
+          if (!other.subject_.isEmpty()) {
+            if (subject_.isEmpty()) {
+              subject_ = other.subject_;
+              bitField0_ = (bitField0_ & ~0x00000008);
+            } else {
+              ensureSubjectIsMutable();
+              subject_.addAll(other.subject_);
+            }
+            onChanged();
+          }
+        } else {
+          if (!other.subject_.isEmpty()) {
+            if (subjectBuilder_.isEmpty()) {
+              subjectBuilder_.dispose();
+              subjectBuilder_ = null;
+              subject_ = other.subject_;
+              bitField0_ = (bitField0_ & ~0x00000008);
+              subjectBuilder_ = 
+                com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders ?
+                   getSubjectFieldBuilder() : null;
+            } else {
+              subjectBuilder_.addAllMessages(other.subject_);
+            }
+          }
         }
         this.mergeUnknownFields(other.getUnknownFields());
         return this;
@@ -690,11 +735,13 @@ public final class PersonInfo {
           
           return false;
         }
-        if (!hasSubject()) {
-          
-          return false;
+        for (int i = 0; i < getSubjectCount(); i++) {
+          if (!getSubject(i).isInitialized()) {
+            
+            return false;
+          }
         }
-        return getSubject().isInitialized();
+        return true;
       }
 
       public Builder mergeFrom(
@@ -900,115 +947,239 @@ public final class PersonInfo {
         return this;
       }
 
-      private Subject subject_ = Subject.getDefaultInstance();
-      private com.google.protobuf.SingleFieldBuilder<
-          Subject, Subject.Builder, SubjectOrBuilder> subjectBuilder_;
-      /**
-       * <code>required .Subject subject = 4;</code>
-       */
-      public boolean hasSubject() {
-        return ((bitField0_ & 0x00000008) == 0x00000008);
+      private java.util.List<Subject> subject_ =
+        java.util.Collections.emptyList();
+      private void ensureSubjectIsMutable() {
+        if (!((bitField0_ & 0x00000008) == 0x00000008)) {
+          subject_ = new java.util.ArrayList<Subject>(subject_);
+          bitField0_ |= 0x00000008;
+         }
       }
+
+      private com.google.protobuf.RepeatedFieldBuilder<
+          Subject, Subject.Builder, SubjectOrBuilder> subjectBuilder_;
+
       /**
-       * <code>required .Subject subject = 4;</code>
+       * <code>repeated .Subject subject = 4;</code>
        */
-      public Subject getSubject() {
+      public java.util.List<Subject> getSubjectList() {
         if (subjectBuilder_ == null) {
-          return subject_;
+          return java.util.Collections.unmodifiableList(subject_);
         } else {
-          return subjectBuilder_.getMessage();
+          return subjectBuilder_.getMessageList();
         }
       }
       /**
-       * <code>required .Subject subject = 4;</code>
+       * <code>repeated .Subject subject = 4;</code>
        */
-      public Builder setSubject(Subject value) {
+      public int getSubjectCount() {
+        if (subjectBuilder_ == null) {
+          return subject_.size();
+        } else {
+          return subjectBuilder_.getCount();
+        }
+      }
+      /**
+       * <code>repeated .Subject subject = 4;</code>
+       */
+      public Subject getSubject(int index) {
+        if (subjectBuilder_ == null) {
+          return subject_.get(index);
+        } else {
+          return subjectBuilder_.getMessage(index);
+        }
+      }
+      /**
+       * <code>repeated .Subject subject = 4;</code>
+       */
+      public Builder setSubject(
+          int index, Subject value) {
         if (subjectBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
           }
-          subject_ = value;
+          ensureSubjectIsMutable();
+          subject_.set(index, value);
           onChanged();
         } else {
-          subjectBuilder_.setMessage(value);
+          subjectBuilder_.setMessage(index, value);
         }
-        bitField0_ |= 0x00000008;
         return this;
       }
       /**
-       * <code>required .Subject subject = 4;</code>
+       * <code>repeated .Subject subject = 4;</code>
        */
       public Builder setSubject(
+          int index, Subject.Builder builderForValue) {
+        if (subjectBuilder_ == null) {
+          ensureSubjectIsMutable();
+          subject_.set(index, builderForValue.build());
+          onChanged();
+        } else {
+          subjectBuilder_.setMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .Subject subject = 4;</code>
+       */
+      public Builder addSubject(Subject value) {
+        if (subjectBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureSubjectIsMutable();
+          subject_.add(value);
+          onChanged();
+        } else {
+          subjectBuilder_.addMessage(value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .Subject subject = 4;</code>
+       */
+      public Builder addSubject(
+          int index, Subject value) {
+        if (subjectBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureSubjectIsMutable();
+          subject_.add(index, value);
+          onChanged();
+        } else {
+          subjectBuilder_.addMessage(index, value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .Subject subject = 4;</code>
+       */
+      public Builder addSubject(
           Subject.Builder builderForValue) {
         if (subjectBuilder_ == null) {
-          subject_ = builderForValue.build();
+          ensureSubjectIsMutable();
+          subject_.add(builderForValue.build());
           onChanged();
         } else {
-          subjectBuilder_.setMessage(builderForValue.build());
+          subjectBuilder_.addMessage(builderForValue.build());
         }
-        bitField0_ |= 0x00000008;
         return this;
       }
       /**
-       * <code>required .Subject subject = 4;</code>
+       * <code>repeated .Subject subject = 4;</code>
        */
-      public Builder mergeSubject(Subject value) {
+      public Builder addSubject(
+          int index, Subject.Builder builderForValue) {
         if (subjectBuilder_ == null) {
-          if (((bitField0_ & 0x00000008) == 0x00000008) &&
-              subject_ != Subject.getDefaultInstance()) {
-            subject_ =
-              Subject.newBuilder(subject_).mergeFrom(value).buildPartial();
-          } else {
-            subject_ = value;
-          }
+          ensureSubjectIsMutable();
+          subject_.add(index, builderForValue.build());
           onChanged();
         } else {
-          subjectBuilder_.mergeFrom(value);
+          subjectBuilder_.addMessage(index, builderForValue.build());
         }
-        bitField0_ |= 0x00000008;
         return this;
       }
       /**
-       * <code>required .Subject subject = 4;</code>
+       * <code>repeated .Subject subject = 4;</code>
+       */
+      public Builder addAllSubject(
+          Iterable<? extends Subject> values) {
+        if (subjectBuilder_ == null) {
+          ensureSubjectIsMutable();
+          com.google.protobuf.AbstractMessageLite.Builder.addAll(
+              values, subject_);
+          onChanged();
+        } else {
+          subjectBuilder_.addAllMessages(values);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .Subject subject = 4;</code>
        */
       public Builder clearSubject() {
         if (subjectBuilder_ == null) {
-          subject_ = Subject.getDefaultInstance();
+          subject_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000008);
           onChanged();
         } else {
           subjectBuilder_.clear();
         }
-        bitField0_ = (bitField0_ & ~0x00000008);
         return this;
       }
       /**
-       * <code>required .Subject subject = 4;</code>
+       * <code>repeated .Subject subject = 4;</code>
        */
-      public Subject.Builder getSubjectBuilder() {
-        bitField0_ |= 0x00000008;
-        onChanged();
-        return getSubjectFieldBuilder().getBuilder();
+      public Builder removeSubject(int index) {
+        if (subjectBuilder_ == null) {
+          ensureSubjectIsMutable();
+          subject_.remove(index);
+          onChanged();
+        } else {
+          subjectBuilder_.remove(index);
+        }
+        return this;
       }
       /**
-       * <code>required .Subject subject = 4;</code>
+       * <code>repeated .Subject subject = 4;</code>
        */
-      public SubjectOrBuilder getSubjectOrBuilder() {
-        if (subjectBuilder_ != null) {
-          return subjectBuilder_.getMessageOrBuilder();
-        } else {
-          return subject_;
+      public Subject.Builder getSubjectBuilder(
+          int index) {
+        return getSubjectFieldBuilder().getBuilder(index);
+      }
+      /**
+       * <code>repeated .Subject subject = 4;</code>
+       */
+      public SubjectOrBuilder getSubjectOrBuilder(
+          int index) {
+        if (subjectBuilder_ == null) {
+          return subject_.get(index);  } else {
+          return subjectBuilder_.getMessageOrBuilder(index);
         }
       }
       /**
-       * <code>required .Subject subject = 4;</code>
+       * <code>repeated .Subject subject = 4;</code>
        */
-      private com.google.protobuf.SingleFieldBuilder<
+      public java.util.List<? extends SubjectOrBuilder>
+           getSubjectOrBuilderList() {
+        if (subjectBuilder_ != null) {
+          return subjectBuilder_.getMessageOrBuilderList();
+        } else {
+          return java.util.Collections.unmodifiableList(subject_);
+        }
+      }
+      /**
+       * <code>repeated .Subject subject = 4;</code>
+       */
+      public Subject.Builder addSubjectBuilder() {
+        return getSubjectFieldBuilder().addBuilder(
+            Subject.getDefaultInstance());
+      }
+      /**
+       * <code>repeated .Subject subject = 4;</code>
+       */
+      public Subject.Builder addSubjectBuilder(
+          int index) {
+        return getSubjectFieldBuilder().addBuilder(
+            index, Subject.getDefaultInstance());
+      }
+      /**
+       * <code>repeated .Subject subject = 4;</code>
+       */
+      public java.util.List<Subject.Builder>
+           getSubjectBuilderList() {
+        return getSubjectFieldBuilder().getBuilderList();
+      }
+      private com.google.protobuf.RepeatedFieldBuilder<
           Subject, Subject.Builder, SubjectOrBuilder>
           getSubjectFieldBuilder() {
         if (subjectBuilder_ == null) {
-          subjectBuilder_ = new com.google.protobuf.SingleFieldBuilder<
+          subjectBuilder_ = new com.google.protobuf.RepeatedFieldBuilder<
               Subject, Subject.Builder, SubjectOrBuilder>(
-                  getSubject(),
+                  subject_,
+                  ((bitField0_ & 0x00000008) == 0x00000008),
                   getParentForChildren(),
                   isClean());
           subject_ = null;
@@ -1512,7 +1683,7 @@ public final class PersonInfo {
           
           return false;
         }
-        return hasType();
+          return hasType();
       }
 
       public Builder mergeFrom(
@@ -1709,7 +1880,7 @@ public final class PersonInfo {
     String[] descriptorData = {
       "\n\014Person.proto\"P\n\006Person\022\n\n\002id\030\001 \002(\005\022\020\n\010" +
       "username\030\002 \002(\t\022\r\n\005email\030\003 \001(\t\022\031\n\007subject" +
-      "\030\004 \002(\0132\010.Subject\"B\n\007Subject\022\014\n\004name\030\001 \002(" +
+      "\030\004 \003(\0132\010.Subject\"B\n\007Subject\022\014\n\004name\030\001 \002(" +
       "\t\022\r\n\005grade\030\002 \002(\005\022\032\n\004type\030\003 \002(\0162\014.Subject" +
       "Type*1\n\013SubjectType\022\013\n\007ENGLISH\020\000\022\013\n\007CHIN" +
       "ESE\020\001\022\010\n\004MATH\020\002B$\n\026cn.xiaoyu.ssm.protobu" +

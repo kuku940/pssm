@@ -9,33 +9,40 @@ import com.google.protobuf.InvalidProtocolBufferException;
 public class TestPersonInfoProtobuf {
     public static void main(String[] args) throws InvalidProtocolBufferException {
         PersonInfo.Person person = create();
-        System.out.println("加密前："+person.toString());
+        System.out.println("加密前：" + person.toString());
 
         PersonInfo.Person p = decode(encode(person));
-        System.out.println("加密解密后："+p.toString());
+        System.out.println("加密解密后：" + p.toString());
     }
 
     //将SubscribeReq编码为byte数组，使用非常方便
-    private static byte[] encode(PersonInfo.Person req){
-        return req.toByteArray();
+    private static byte[] encode(PersonInfo.Person person) {
+        return person.toByteArray();
     }
+
     //解码parseFrom将二进制byte数组解码为原始的对象
     private static PersonInfo.Person decode(byte[] body) throws InvalidProtocolBufferException {
         return PersonInfo.Person.parseFrom(body);
     }
 
     //创建一个req的实体
-    private static PersonInfo.Person create(){
+    private static PersonInfo.Person create() {
         PersonInfo.Subject.Builder subject = PersonInfo.Subject.newBuilder();
         subject.setName("english");
         subject.setGrade(90);
         subject.setType(PersonInfo.SubjectType.ENGLISH);
 
+        PersonInfo.Subject.Builder sub2 = PersonInfo.Subject.newBuilder();
+        sub2.setName("math");
+        sub2.setGrade(98);
+        sub2.setType(PersonInfo.SubjectType.MATH);
+
         PersonInfo.Person.Builder person = PersonInfo.Person.newBuilder();
         person.setId(10086);
         person.setUsername("Roin");
         person.setEmail("Roin@qq.com");
-        person.setSubject(subject);
+        person.addSubject(subject);
+        person.addSubject(sub2);
 
         return person.build();
     }
