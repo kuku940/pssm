@@ -3,6 +3,7 @@ package cn.xiaoyu.ssm.netty;
 import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelInitializer;
+import io.netty.channel.ChannelOption;
 import io.netty.channel.EventLoopGroup;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
@@ -28,7 +29,7 @@ public class EchoClient {
     }
 
     public void start() throws Exception{
-        // 配置客户端NIO线程组
+        // 配置客户端NIO线程组,可通过构造方法指定io线程数，默认为内核数2倍
         EventLoopGroup workGroup = new NioEventLoopGroup();
         try{
             Bootstrap bootstrap = new Bootstrap();
@@ -36,6 +37,8 @@ public class EchoClient {
             bootstrap.group(workGroup)
                     // 用于NIO传输的Channel类型
                     .channel(NioSocketChannel.class)
+                    .option(ChannelOption.TCP_NODELAY,true)
+                    .option(ChannelOption.CONNECT_TIMEOUT_MILLIS,3000)
                     // 当一个Channel创建时，把一个EchoClinet加入他的pipeline中
                     .handler(new ChannelInitializer<SocketChannel>() {
                         @Override
