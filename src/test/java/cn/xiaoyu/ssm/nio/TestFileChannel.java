@@ -29,6 +29,11 @@ public class TestFileChannel {
             fileChannel.read(buffer);
         }
         accessFile.close();
-        System.exit(0);
+        /**
+         * 这儿如果使用System.exit(0);
+         * maven编译会出现如下的错误：
+         * The forked VM terminated without saying properly goodbye. VM crash or System.exit called
+         */
+//        System.exit(0);
     }
 }
