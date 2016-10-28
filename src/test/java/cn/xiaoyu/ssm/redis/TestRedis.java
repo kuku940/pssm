@@ -107,15 +107,22 @@ public class TestRedis {
         /**
          * 用户A将商品B上架，使用事务来处理
          */
-        long nano = System.nanoTime();
-        long timeout = 10000;
-        while((System.nanoTime() - nano) < timeout){
+        long millis = System.currentTimeMillis();
+        long timeout = 1000;
+        while((System.currentTimeMillis() - millis) < timeout){
+            //观察这个key是否变动
+            jedis.watch("invertory:1");
+            if(!jedis.sismember("invertory:1","itemB")){
+                jedis.unwatch();
+                return ;
+            }
+
             Transaction tx = jedis.multi();
             tx.zadd("market",90,"itemB_user:1");
             tx.srem("invertory:1","itemB");
             list = tx.exec();
             if(list == null || list.isEmpty()){
-                throw new Exception("sale itemB fail");
+                continue;
             }
             System.out.println("上架商品B："+list);
             tx.close();
@@ -124,14 +131,21 @@ public class TestRedis {
         /**
          * 用户B购买商品并且支付现金，使用管道中调用事务来处理
          */
-        nano = System.nanoTime();
-        while((System.nanoTime() - nano) < timeout){
-            Pipeline p = jedis.pipelined();
+        millis = System.currentTimeMillis();
+        while((System.currentTimeMillis() - millis) < timeout){
+            jedis.watch("market");
             /**
              * 使用jedis来获取价格是因为使用pipeline必须要p.sync()来获取response才有数据
              * 否则是Please close pipeline or multi block before calling this method.错误
              */
             double price = jedis.zscore("market","itemB_user:1");
+            double cash = Double.parseDouble(jedis.hget("user:2","cash"));
+            if(price > cash){
+                jedis.unwatch();
+                return;
+            }
+            Pipeline p = jedis.pipelined();
+
             p.multi();
             p.hincrByFloat("user:2","cash",-1 * price);
             p.hincrByFloat("user:1","cash",price);
@@ -143,6 +157,21 @@ public class TestRedis {
             System.out.println("购买商品B:"+list);
             break;
         }
+    }
+
+    /**
+     * 将新数据添加到list的开始
+     */
+    @Test
+    public void testContact(){
+        String ac_list = "recent:1"; //userId = 1
+
+        Pipeline pipe = jedis.pipelined();
+        pipe.multi();
+        pipe.lpush(ac_list,"Pony","Jack","Roin","Robin");
+        pipe.lrem(ac_list,1,"mary");
+        pipe.ltrim(ac_list,0,99);
+        pipe.exec();
     }
 
     @After

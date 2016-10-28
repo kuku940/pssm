@@ -20,4 +20,10 @@ public class CommonUtil {
             }
         }
     }
+
+    public static void assertTrue(boolean bool) throws Exception{
+        if(!bool){
+            throw new Exception();
+        }
+    }
 }
