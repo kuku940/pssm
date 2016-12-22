@@ -1,6 +1,5 @@
 package cn.xiaoyu.ssm.spring;
 
-import cn.xiaoyu.ssm.dao.ZreadingDao;
 import org.springframework.beans.BeanWrapper;
 import org.springframework.beans.factory.BeanFactory;
 import org.springframework.beans.factory.config.BeanDefinition;
@@ -14,6 +13,7 @@ import org.springframework.context.annotation.ClassPathBeanDefinitionScanner;
 import org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider;
 import org.springframework.context.annotation.ComponentScanBeanDefinitionParser;
 import org.springframework.context.support.AbstractApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.context.support.FileSystemXmlApplicationContext;
 import org.w3c.dom.Element;
 
@@ -76,9 +76,14 @@ import org.w3c.dom.Element;
 public class SimpleFileSystemXmlApplicationContext {
     public static void main(String[] args) {
 
-        ApplicationContext ctx = new FileSystemXmlApplicationContext("classpath*:beans.xml");
-//        ApplicationContext ctx = new ClassPathXmlApplicationContext("beans.xml");
-        ZreadingDao bean = ctx.getBean("zreadingDao",ZreadingDao.class);
-        System.out.println(bean);
+//        ApplicationContext ctx = new FileSystemXmlApplicationContext("classpath*:beans.xml");
+////        ApplicationContext ctx = new ClassPathXmlApplicationContext("beans.xml");
+//        ZreadingDao bean = ctx.getBean("zreadingDao",ZreadingDao.class);
+//        System.out.println(bean);
+
+        ApplicationContext context = new ClassPathXmlApplicationContext("beans-autoproxy.xml");
+        TestBean bean = context.getBean("test", TestBean.class);
+
+        bean.printTest();
     }
 }

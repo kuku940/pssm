@@ -40,8 +40,8 @@ public class AspectTest {
      * @return Object
      */
     @Around(POINT_CUT)
-    public Object arountTest(ProceedingJoinPoint point){
-        System.out.println("before1");
+    public Object aroundTest(ProceedingJoinPoint point){
+        System.out.println("around before");
         Object object = null;
 
         try{
@@ -50,7 +50,7 @@ public class AspectTest {
         catch (Throwable e){
             e.printStackTrace();
         }
-        System.out.println("after1");
+        System.out.println("around after");
 
         return object;
     }

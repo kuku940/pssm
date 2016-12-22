@@ -39,11 +39,15 @@ public class TestMybatisConn {
     @Test
     public void getUserDaoWithoutSpring() throws IOException {
         String resource = "mapper/UserMapper.xml";
-        InputStream inputStream = Resources.getResourceAsStream("mapper/UserMapper.xml");
+        InputStream inputStream = Resources.getResourceAsStream("classpath*:mybatis-config.xml");
         SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
         SqlSession session = sqlSessionFactory.openSession();
         try {
             User user = session.selectOne("cn.xiaoyu.ssm.dao.UserDao.getUserById",1);
+            System.out.println(user);
+
+            UserDao userDao = session.getMapper(UserDao.class);
+            user = userDao.getUserById(1);
             System.out.println(user);
         }finally {
             session.close();
