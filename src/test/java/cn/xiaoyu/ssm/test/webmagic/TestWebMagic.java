@@ -2,17 +2,25 @@ package cn.xiaoyu.ssm.test.webmagic;
 
 import us.codecraft.webmagic.Page;
 import us.codecraft.webmagic.Site;
-import us.codecraft.webmagic.Spider;
-import us.codecraft.webmagic.pipeline.JsonFilePipeline;
 import us.codecraft.webmagic.processor.PageProcessor;
+
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class TestWebMagic implements PageProcessor {
     // 抓取网站的相关配置，包括编码、抓取间隔，重试次数
     private Site site = Site.me().setRetryTimes(3).setSleepTime(100);
 
     public static void main(String[] args) {
-        Spider.create(new TestWebMagic()).addUrl("http://www.zreading.cn/")
-                .addPipeline(new JsonFilePipeline("D:/webmagic/")).thread(5).run();
+//        Spider.create(new TestWebMagic()).addUrl("http://www.zreading.cn/")
+//                .addPipeline(new JsonFilePipeline("D:/webmagic/")).thread(1).run();
+        String pattern = "\\d+";
+        Pattern r = Pattern.compile(pattern);
+        Matcher m = r.matcher("阅读量：2,990 views".replace(",",""));
+        if(m.find()){
+            System.out.println(m.group(0));
+        }
+        System.out.println(1213);
     }
 
     /**

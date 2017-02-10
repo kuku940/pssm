@@ -2,9 +2,16 @@ package cn.xiaoyu.ssm.domain;
 
 import us.codecraft.webmagic.Page;
 import us.codecraft.webmagic.model.AfterExtractor;
-import us.codecraft.webmagic.model.annotation.*;
+import us.codecraft.webmagic.model.annotation.ExtractBy;
+import us.codecraft.webmagic.model.annotation.ExtractByUrl;
+import us.codecraft.webmagic.model.annotation.HelpUrl;
+import us.codecraft.webmagic.model.annotation.TargetUrl;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * Created by Administrator on 2016/9/7.
@@ -19,8 +26,8 @@ public class Zreading implements AfterExtractor {
     private int id;
     @ExtractBy("//title/text()")
     private String title;
-    @Formatter("yyyy-MM-dd")
     @ExtractBy("//span[@itemprop='datePublished']/text()")
+    private String publishDateStr;
     private Date publishDate;
     @ExtractBy("//span[@itemprop='author']/a/text()")
     private String author;
@@ -28,10 +35,31 @@ public class Zreading implements AfterExtractor {
     private String url;
     @ExtractBy("//div[@itemprop='description']")
     private String acticle;
+    @ExtractBy("//span[@class='show-view']/text()")
+    private String viewsStr;
+    private int views;
 
+    /**
+     * 进行一些后续处理
+     * */
     @Override
     public void afterProcess(Page page) {
-        //进行一些后续处理
+        try {
+            // 时间解析有些问题，所有在手动进行解析
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+            Date publishDate = sdf.parse(publishDateStr);
+            this.setPublishDate(publishDate);
+
+            // 阅读量进行正则匹配
+            String pattern = "\\d+";
+            Pattern r = Pattern.compile(pattern);
+            Matcher m = r.matcher(this.getViewsStr().replace(",",""));
+            if (m.find()) {
+                this.setViews(Integer.parseInt(m.group(0)));
+            }
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
     }
 
     public int getId() {
@@ -82,4 +110,27 @@ public class Zreading implements AfterExtractor {
         this.acticle = acticle;
     }
 
+    public int getViews() {
+        return views;
+    }
+
+    public void setViews(int views) {
+        this.views = views;
+    }
+
+    public String getPublishDateStr() {
+        return publishDateStr;
+    }
+
+    public void setPublishDateStr(String publishDateStr) {
+        this.publishDateStr = publishDateStr;
+    }
+
+    public String getViewsStr() {
+        return viewsStr;
+    }
+
+    public void setViewsStr(String viewsStr) {
+        this.viewsStr = viewsStr;
+    }
 }

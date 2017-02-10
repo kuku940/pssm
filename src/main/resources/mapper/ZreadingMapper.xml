@@ -2,10 +2,14 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="cn.xiaoyu.ssm.dao.ZreadingDao">
     <insert id="save" parameterType="_Zreading" useGeneratedKeys="true" keyProperty="id">
-      insert into zreading(title,author,publishDate,url,acticle) VALUES (#{title},#{author},#{publishDate},#{url},#{acticle})
+      insert into zreading(title,author,publishDate,url,acticle,views) VALUES (#{title},#{author},#{publishDate},#{url},#{acticle},#{views})
     </insert>
 
     <select id="getByUrl" parameterType="String" resultType="_Zreading">
         select * from zreading where url = #{url}
+    </select>
+
+    <select id="update" parameterType="_Zreading">
+        update zreading set title=#{title},author=#{author},publishDate=#{publishDate},acticle=#{acticle},views=#{views} where url=#{url}
     </select>
 </mapper>

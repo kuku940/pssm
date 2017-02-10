@@ -14,4 +14,6 @@ public interface ZreadingDao {
     int save(Zreading zreading);
 
     Zreading getByUrl(String url);
+
+    void update(Zreading zreading);
 }

@@ -25,7 +25,7 @@ public class ZreadingPipline implements PageModelPipeline<Zreading> {
             // 调用Mybatis Dao保存结果
             zreadingDao.save(zreading);
         }else{
-
+            zreadingDao.update(zreading);
         }
     }
 }

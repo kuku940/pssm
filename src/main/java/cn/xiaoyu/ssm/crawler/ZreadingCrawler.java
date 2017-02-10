@@ -23,7 +23,7 @@ public class ZreadingCrawler {
     @RequestMapping(value="/touch",method= RequestMethod.GET)
     public Object crawl(){
         OOSpider.create(Site.me().setUserAgent("Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/31.0.1650.57 Safari/537.36")
-                ,zreadingPageModelPipeline, Zreading.class).addUrl("http://www.zreading.cn/").thread(5).run();
+                ,zreadingPageModelPipeline, Zreading.class).addUrl("http://www.zreading.cn/").thread(10).run();
         return "sprider is running!";
     }
 }
