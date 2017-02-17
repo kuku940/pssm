@@ -6,6 +6,8 @@
 	<typeAliases>
 		<typeAlias alias="_User" type="cn.xiaoyu.ssm.domain.User" />
 		<typeAlias type="cn.xiaoyu.ssm.domain.Zreading" alias="_Zreading" />
+		<typeAlias type="cn.xiaoyu.ssm.domain.Zhihu" alias="_Zhihu" />
+		<typeAlias type="cn.xiaoyu.ssm.domain.Music163" alias="_Music163" />
 	</typeAliases>
 
 	<!-- 注释这个在于springmvc整合的时候，spring的配置文件中bean.xml文件已经配置了这样的内容，所以会产生冲突，这就会导致出现报错
