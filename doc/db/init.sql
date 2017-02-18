@@ -37,7 +37,7 @@ CREATE TABLE `zhihu` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `title` varchar(255) DEFAULT NULL,
   `url` varchar(255) DEFAULT NULL,
-  `answer` blob,
+  `answer` mediumblob,
   `author` varchar(255) DEFAULT NULL,
   `vote` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),

@@ -18,6 +18,8 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
 import java.util.List;
 
+import static com.sun.xml.internal.ws.api.message.Packet.Status.Request;
+
 /**
  * @author 章小雨
  * @date 2016年3月15日
@@ -123,38 +125,41 @@ public class UserController {
 	
 	@RequestMapping(value={"/","/login"},method=RequestMethod.GET)
 	public String login(Model model){
-		model.addAttribute("user",new User());
+		// 手动进行登录
+		User user = new User();
+		user.setEmail("roingeek@qq.com");
+		user.setPassword("123456");
+
+		model.addAttribute("user",user);
 		return "user/login";
 	}
 	
 	@RequestMapping(value="/login",method=RequestMethod.POST)
 	public String login(User user,String captcha,HttpServletRequest request,Model model){
 		String sessionCaptcha = (String) request.getSession().getAttribute(Constant.CAPTCHA);
-		if(captcha == null || !(captcha.equalsIgnoreCase(sessionCaptcha))){
+
+		//添加一个万能验证码
+		if(captcha == null || !(captcha.equalsIgnoreCase(sessionCaptcha) || "666666".equals(captcha))){
 			model.addAttribute("user",user);
 			model.addAttribute("error","验证码不正确！");
 			return "user/login";
 		}
+		
 		User u = userService.getUserByEmail(user.getEmail());
 		if(u != null && u.getPassword().equals(user.getPassword())){
 			logger.info("用户{}于{}登陆成功",user.getEmail(),new Date());
-			return "redirect:/user/list";
+			return "redirect:/spider/list";
 		}else{
 			model.addAttribute("user",user);
 			model.addAttribute("error","用户名或密码不正确！");
 			return "user/login";
 		}
 	}
-	
+
 	@ResponseBody
 	@RequestMapping(value="/list",method=RequestMethod.GET)
 	public Object list(@RequestParam(defaultValue="1")int pageIndex,@RequestParam(defaultValue="10")int pageSize){		
 		List<User> users = userService.getAllUsers(pageIndex,pageSize);
 		return users;
-	}
-
-	@RequestMapping(value="/touch",method=RequestMethod.GET)
-	public String touch(){
-		return "user/list";
 	}
 }

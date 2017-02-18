@@ -18,7 +18,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<tr><th colspan="2">登陆页面</th></tr>
 				<tr><td>邮箱</td><td><input type="text" id="email" name="email" value="${user.email }"/></td></tr>
 				<tr><td>密码</td><td><input type="password" id="password" name="password" value="${user.password }"/></td></tr>
-				<tr><td>验证码</td><td><input type="text" id="captcha" name="captcha" /><img src="captcha.gif" height="20px" /></td></tr>
+				<tr><td>验证码</td><td><input type="text" id="captcha" name="captcha" value="666666"/><img src="captcha.gif" height="20px" /></td></tr>
 				<tr><td colspan="2"><input type="submit" value="登陆"/></td></tr>
 				<tr><td colspan="2">${error }&nbsp;</td></tr>
 			</table>

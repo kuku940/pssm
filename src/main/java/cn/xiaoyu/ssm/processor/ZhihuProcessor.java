@@ -23,18 +23,20 @@ public class ZhihuProcessor implements PageProcessor {
             .addHeader("Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8")
             .addHeader("Accept-Language", "zh-CN,zh;q=0.8,en-US;q=0.5,en;q=0.3")
             .setCharset("UTF-8")
-            .addCookie("_xsrf", "8cf4e0cdd1ed7df6ddb1eab2c5dc9168")
+            .addCookie("_xsrf", "3517ac9e17387a11f57bf70df1c0b310")
             .addCookie("_zap", "bfbc0a11-f73a-4dd0-96c6-d11a1784815e")
-            .addCookie("z_c0", "Mi4wQUFCQTByMGJBQUFBQUlLSmI3eE9DeGNBQUFCaEFsVk5qZ2JLV0FCWHZMMTg1c1llSlNKSlA5NGZ6M3BRdXo1VFpR|1487042964|f219f265035de8cab353a6c14cb4bd21549c318f");
+            .addCookie("z_c0", "Mi4wQUFBQ0FXVHhVZ3NBQUlLSmI3eE9DeVlBQUFCZ0FsVk5JSFhPV0FENTloVEVHc0EtU3l1M2Noa0NCUlJjV2NHaWxB|1487333424|fc4eb05f00bad2ee9410ccb6bee55536b6699192")
+            .setSleepTime(3000);
 
 
     @Override
     public void process(Page page) {
         //表示页面是符合条件的页面
+        String url = page.getUrl().toString();
         if(page.getUrl().regex("https://www\\.zhihu\\.com/question/\\d+/answer/\\d+").match()){
             // 定义被保存的一些信息
             Zhihu zhihu = new Zhihu();
-            zhihu.setUrl(page.getUrl().toString());
+            zhihu.setUrl(url);
             zhihu.setTitle(page.getHtml().xpath("//div[@id='zh-question-title']//a/text()").toString().trim());
             zhihu.setAuthor(page.getHtml().xpath("//div[@id='zh-question-answer-wrap']//a[@class='author-link']/text()").toString());
             zhihu.setAnswer(page.getHtml().xpath("//div[@id='zh-question-answer-wrap']//div[@class='zm-item-rich-text']").toString());
@@ -47,17 +49,24 @@ public class ZhihuProcessor implements PageProcessor {
         Set<String> set = new HashSet<String>();
 
         List<String> list = new ArrayList<>();
-        list.addAll(page.getHtml().links().regex("(/question/\\d+)").all());
+//        list.addAll(page.getHtml().links().regex("(/question/\\d+)").all());
+        list.addAll(page.getHtml().links().regex("(\\?page=\\d+)").all());
         list.addAll(page.getHtml().links().regex("(/question/\\d+/answer/\\d+)").all());
-        list.addAll(page.getHtml().links().regex("(https://www\\.zhihu\\.com/question/\\d+/answer/\\d+)").all());
-        String url = "";
+//        list.addAll(page.getHtml().links().regex("(https://www\\.zhihu\\.com/question/\\d+/answer/\\d+)").all());
+        String tmpurl = "";
         for(int i=0;i<list.size();i++){
-            url = list.get(i);
-            if(url != null && !("".equals(url))){
-                if(url.contains("https://www.zhihu.com")){
-                    set.add(url);
+            tmpurl = list.get(i);
+            if(tmpurl != null && !("".equals(url))){
+                if(tmpurl.contains("https://www.zhihu.com")){
+                    set.add(tmpurl);
+                }else if(tmpurl.contains("?page=")) {
+                    if(url.contains("?page=")){
+                        set.add(url.substring(0,url.indexOf("?")) + tmpurl);
+                    }else{
+                        set.add(url + tmpurl);
+                    }
                 }else{
-                    set.add("https://www.zhihu.com"+url);
+                    set.add("https://www.zhihu.com"+tmpurl);
                 }
             }
         }
