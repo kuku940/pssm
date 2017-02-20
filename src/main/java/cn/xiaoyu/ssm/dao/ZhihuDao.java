@@ -2,6 +2,8 @@ package cn.xiaoyu.ssm.dao;
 
 import cn.xiaoyu.ssm.domain.Zhihu;
 
+import java.util.List;
+
 /**
  * Created by xiaoyu on 2016/9/7.
  */
@@ -14,6 +16,8 @@ public interface ZhihuDao {
     int save(Zhihu zhihu);
 
     Zhihu getByUrl(String url);
+
+    List<Zhihu> getAllForList();
 
     void update(Zhihu zhihu);
 }

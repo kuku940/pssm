@@ -166,6 +166,13 @@
       <version>1.2.4</version>
     </dependency>
 
+    <!-- mybatis分页插件 -->
+    <dependency>
+      <groupId>com.github.pagehelper</groupId>
+      <artifactId>pagehelper</artifactId>
+      <version>4.1.4</version>
+    </dependency>
+
     <!-- mysql driver jar -->
     <dependency>
       <groupId>mysql</groupId>
