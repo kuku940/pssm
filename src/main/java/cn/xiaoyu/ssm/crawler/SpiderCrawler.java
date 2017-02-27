@@ -3,7 +3,9 @@ package cn.xiaoyu.ssm.crawler;
 import cn.xiaoyu.ssm.domain.Music163;
 import cn.xiaoyu.ssm.domain.Zhihu;
 import cn.xiaoyu.ssm.domain.Zreading;
+import cn.xiaoyu.ssm.pipline.Music163Pipeline;
 import cn.xiaoyu.ssm.pipline.ZhihuPipline;
+import cn.xiaoyu.ssm.processor.Music163Processor;
 import cn.xiaoyu.ssm.processor.ZhihuProcessor;
 import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Service;
@@ -26,8 +28,8 @@ public class SpiderCrawler {
     private PageModelPipeline<Zreading> zreadingPageModelPipeline;
     @Resource(name="zhihuPipline")
     private ZhihuPipline zhihuPipline;
-    @Resource(name="music163Pipline")
-    private PageModelPipeline<Music163> music163PageModelPipeline;
+    @Resource(name="music163Pipeline")
+    private Music163Pipeline music163Pipeline;
 
     /**
      * 抓取 左岸读书文章
@@ -43,8 +45,9 @@ public class SpiderCrawler {
      */
     public void crawlZhihu(){
         OOSpider.create(new ZhihuProcessor()).addPipeline(zhihuPipline)
-                .addUrl("https://www.zhihu.com/collection/37406996")
-                .addUrl("https://www.zhihu.com/collection/34173061")
+//                .addUrl("https://www.zhihu.com/collection/37406996")
+//                .addUrl("https://www.zhihu.com/collection/34173061")
+                .addUrl("https://www.zhihu.com/collection/38887091")
                 .thread(3).run();
     }
 
@@ -52,11 +55,8 @@ public class SpiderCrawler {
      * 抓取 网易云音乐
      */
     public void crawlMusic163(){
-        Site site = Site.me()
-                .setUserAgent("Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/31.0.1650.57 Safari/537.36")
-                .addHeader("Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8")
-                .addHeader("Accept-Language", "zh-CN,zh;q=0.8,en-US;q=0.5,en;q=0.3")
-                .setCharset("UTF-8");
-//        OOSpider.create(site,music163PageModelPipeline, Music163.class).addUrl("http://music.163.com/song?id=202373").thread(1).run();
+        OOSpider.create(new Music163Processor()).addPipeline(music163Pipeline)
+                .addUrl("http://music.163.com/song?id=189735")
+                .thread(3).run();
     }
 }

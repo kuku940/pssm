@@ -1,24 +1,15 @@
 package cn.xiaoyu.ssm.domain;
 
-import us.codecraft.webmagic.Page;
-import us.codecraft.webmagic.model.AfterExtractor;
-import us.codecraft.webmagic.model.annotation.ExtractByUrl;
-import us.codecraft.webmagic.model.annotation.HelpUrl;
-import us.codecraft.webmagic.model.annotation.TargetUrl;
-
 /**
  * Created by roin_zhang on 2016/9/26.
  * 网易云音乐实体类
  */
-@TargetUrl("/song?id=\\d+")
-@HelpUrl("/playlist/\\d+/")
-public class Music163 implements AfterExtractor{
+public class Music163{
     private int id;
-    @ExtractByUrl
     private String url;
     private String name;
     private String singer; //歌手
-    private int comments; //评论数量
+    private int commentCount; //评论数量
 
     public int getId() {
         return id;
@@ -44,15 +35,10 @@ public class Music163 implements AfterExtractor{
     public void setSinger(String singer) {
         this.singer = singer;
     }
-    public int getComments() {
-        return comments;
+    public int getCommentCount() {
+        return commentCount;
     }
-    public void setComments(int comments) {
-        this.comments = comments;
-    }
-
-    @Override
-    public void afterProcess(Page page) {
-        System.out.println("Music163.afterProcess");
+    public void setCommentCount(int commentCount) {
+        this.commentCount = commentCount;
     }
 }
