@@ -39,7 +39,7 @@ public class TestMybatisConn {
     @Test
     public void getUserDaoWithoutSpring() throws IOException {
         String resource = "mapper/UserMapper.xml";
-        InputStream inputStream = Resources.getResourceAsStream("classpath*:mybatis-config.xml");
+        InputStream inputStream = Resources.getResourceAsStream("mybatis-config.xml");
         SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
         SqlSession session = sqlSessionFactory.openSession();
         try {
