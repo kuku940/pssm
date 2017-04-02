@@ -10,10 +10,10 @@
     <!-- 这个是测试spring aop功能的spring配置文件 -->
 
     <!-- 激活自动代理功能 -->
-    <aop:aspectj-autoproxy />
+    <aop:aspectj-autoproxy/>
 
     <!-- 业务逻辑切面配置 -->
-    <bean id="test" class = "cn.xiaoyu.ssm.spring.TestBean" />
-    <bean class="cn.xiaoyu.ssm.spring.AspectTest" />
+    <bean id="test" class="cn.xiaoyu.ssm.spring.TestBean"/>
+    <bean class="cn.xiaoyu.ssm.spring.AspectTest"/>
 
 </beans>

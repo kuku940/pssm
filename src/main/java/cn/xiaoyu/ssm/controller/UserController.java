@@ -18,8 +18,6 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
 import java.util.List;
 
-import static com.sun.xml.internal.ws.api.message.Packet.Status.Request;
-
 /**
  * @author 章小雨
  * @date 2016年3月15日
@@ -103,7 +101,6 @@ public class UserController {
 	}
 	/**
 	 * 邮箱验证
-	 * @param model
 	 * @return
 	 * 
 	 * produces="text/html;charset=UTF-8" 防止返回的json中文乱码
