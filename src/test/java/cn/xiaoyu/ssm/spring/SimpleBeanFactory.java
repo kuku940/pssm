@@ -1,9 +1,21 @@
 package cn.xiaoyu.ssm.spring;
 
-import cn.xiaoyu.ssm.service.UserService;
+import org.springframework.beans.*;
+import org.springframework.beans.factory.BeanCreationException;
+import org.springframework.beans.factory.config.BeanDefinition;
+import org.springframework.beans.factory.config.BeanPostProcessor;
+import org.springframework.beans.factory.config.InstantiationAwareBeanPostProcessor;
+import org.springframework.beans.factory.config.TypedStringValue;
 import org.springframework.beans.factory.support.DefaultListableBeanFactory;
+import org.springframework.beans.factory.support.RootBeanDefinition;
 import org.springframework.beans.factory.xml.XmlBeanDefinitionReader;
 import org.springframework.core.io.ClassPathResource;
+import org.springframework.util.ObjectUtils;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.List;
 
 /**
  * Created by roin_zhang on 2016/9/18.
@@ -45,6 +57,7 @@ public class SimpleBeanFactory {
 
         //经过上述处理后，facatory中就有了BeanDefinitionMap和BeanDefinitionNames两个属性，这儿包含了有的所有的bean节点
         TestBean bean = factory.getBean("test", TestBean.class);
-        System.out.println(bean);
+        bean.printTest();
     }
+
 }

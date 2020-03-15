@@ -45,8 +45,8 @@ public class SpiderCrawler {
      */
     public void crawlZhihu(){
         OOSpider.create(new ZhihuProcessor()).addPipeline(zhihuPipline)
-//                .addUrl("https://www.zhihu.com/collection/37406996")
-//                .addUrl("https://www.zhihu.com/collection/34173061")
+                .addUrl("https://www.zhihu.com/collection/37406996")
+                .addUrl("https://www.zhihu.com/collection/34173061")
                 .addUrl("https://www.zhihu.com/collection/38887091")
                 .thread(3).run();
     }

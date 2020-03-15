@@ -11,17 +11,17 @@ import java.util.List;
  */
 public interface UserService {
 
-	User getUserById(int id);
+    User getUserById(int id);
 
-	List<User> getUserByName(String username);
+    List<User> getUserByName(String username);
 
-	User getUserByEmail(String email);
+    User getUserByEmail(String email);
 
-	void saveUser(User user);
+    void saveUser(User user);
 
-	void updateUser(User user);
+    void updateUser(User user);
 
-	void deleteUser(int id);
-	
-	List<User> getAllUsers(int index,int size);
+    void deleteUser(int id);
+
+    List<User> getAllUsers(int index, int size);
 }

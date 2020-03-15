@@ -26,7 +26,6 @@ public class TestAnonymousMethod{
 
         // 通过接口实现匿名类的实例
         tam.sayHi(new AnonymousInterface() {
-            @Override
             public void sayHi() {
                 System.out.println("hi,everybody!");
             }

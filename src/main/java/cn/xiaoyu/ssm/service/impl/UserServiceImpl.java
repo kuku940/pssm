@@ -19,14 +19,17 @@ public class UserServiceImpl implements UserService{
 	@Resource
 	private UserDao userDao;
 	
+	@Override
 	public User getUserById(int id) {
 		return this.userDao.getUserById(id);
 	}
 
+	@Override
 	public List<User> getUserByName(String username) {
 		return this.userDao.getUserByName(username);
 	}
 
+	@Override
 	public User getUserByEmail(String email) {
 		return this.userDao.getUserByEmail(email);
 	}

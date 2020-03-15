@@ -24,7 +24,7 @@ public class SubReqClientHandler extends ChannelInboundHandlerAdapter  {
         builder.setUserName("Roin");
         builder.setProductName("Netty Book");
 
-        List<String> address = new ArrayList<>();
+        List<String> address = new ArrayList<String>();
         address.add("beijing");
         address.add("shenzhen");
 

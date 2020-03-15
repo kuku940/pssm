@@ -6,7 +6,7 @@
     <!-- spring和MyBatis整合，不需要mybatis的配置映射文件 -->
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
         <!--dataSource属性指定要用到的连接池 -->
-        <property name="dataSource" ref="dataSource"/>
+        <property name="dataSource" ref="dataSourceByDbcp"/>
         <!--configLocation属性指定mybatis的核心配置文件 -->
         <property name="configLocation" value="classpath:mybatis-config.xml"/>
         <!-- 所有配置的mapper文件 -->

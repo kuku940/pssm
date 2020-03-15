@@ -13,7 +13,7 @@
     <aop:aspectj-autoproxy/>
 
     <!-- 业务逻辑切面配置 -->
-    <bean id="test" class="cn.xiaoyu.ssm.spring.TestBean"/>
+    <bean id="test" class="cn.xiaoyu.ssm.spring.TestBean" />
     <bean class="cn.xiaoyu.ssm.spring.AspectTest"/>
 
 </beans>

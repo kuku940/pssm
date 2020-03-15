@@ -12,7 +12,7 @@ import java.util.List;
  */
 public class TestMessagePack {
     public static void main(String[] args) throws IOException {
-        List<String> list = new ArrayList<>();
+        List<String> list = new ArrayList<String>();
         list.add("msgpack");
         list.add("java");
         list.add("api");

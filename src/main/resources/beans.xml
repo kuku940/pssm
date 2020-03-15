@@ -18,4 +18,5 @@
 		<!-- 排除注解为controller的类型 -->
 		<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller" />
 	</context:component-scan>
+
 </beans>

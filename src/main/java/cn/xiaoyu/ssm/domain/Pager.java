@@ -10,7 +10,7 @@ import java.util.List;
  * @date 2017/2/20
  */
 public class Pager<T> {
-    private List pageData = new ArrayList<>();
+    private List pageData = new ArrayList<T>();
     private int pageNum;
     private int totalPageNum;
     private int totalRecord;
